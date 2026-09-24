@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Membres | Friends Poker Club</title>
+    <meta name="description" content="Membres, recherche et fiches du Friends Poker Club." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Expletus+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="subpage members-page">
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="./index.html#accueil" aria-label="Friends Poker Club, accueil">
+          <div class="brand-mark">F<span>♠</span></div>
+          <div>
+            <span class="brand-name">Friends Poker Club</span>
+            <small>Association de poker</small>
+          </div>
+        </a>
+        <nav class="nav-links" aria-label="Navigation principale">
+          <a href="./index.html#club">Le Club</a>
+          <a href="./index.html#rendez-vous">Tournois</a>
+          <a href="./tour-des-potes.html">Tour des Potes</a>
+          <a class="active" href="./membres.html">Membres</a>
+          <a href="./historique.html">Historique</a>
+        </nav>
+        <a class="button button-primary button-small" href="mailto:contact@friendspokerclub.fr">Nous rejoindre <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+    <main class="subpage-main members-main">
+      <div class="container">
+        <a class="back-link" href="./index.html#accueil">← Retour à l’accueil</a>
+        <section class="subpage-hero members-hero" aria-labelledby="members-title">
+          <div>
+            <p class="eyebrow">Vie du club · Joueurs et joueuses</p>
+            <h1 id="members-title">Les <em>membres.</em></h1>
+            <p class="subpage-lead">Retrouvez les joueurs du Friends Poker Club, recherchez un pseudo ou un nom et consultez les fiches disponibles.</p>
+          </div>
+          <div class="subpage-hero-art">
+            <img src="https://www.friendspokerclub.fr/_frame/bandeau3.jpg" alt="Membres du Friends Poker Club autour d'une table" />
+          </div>
+        </section>
+
+        <section class="members-section members-page-section" aria-labelledby="members-list-title">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Annuaire du club</p>
+              <h2 id="members-list-title">Les joueurs du club</h2>
+            </div>
+            <label class="search-box" aria-label="Rechercher un membre">
+              <span aria-hidden="true">⌕</span>
+              <input id="member-search" type="search" placeholder="Rechercher un pseudo ou un nom..." />
+            </label>
+          </div>
+          <div class="filters" id="filters"></div>
+          <div class="members-grid" id="members-grid"></div>
+        </section>
+
+        <section class="stats-section members-stats" aria-label="Chiffres du club">
+          <div class="stats-grid" id="stats-grid"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <h3>Friends Poker Club</h3>
+          <p>Association loi 1901 · Montigny-le-Bretonneux</p>
+        </div>
+        <div class="footer-meta"><a href="./index.html#accueil">Retour à l’accueil ↗</a></div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

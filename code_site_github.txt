@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friends Poker Club — Portail Officiel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between">
+
+  <!-- Entête & Navigation Principale -->
+  <header class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-3xl">♠️</span>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight text-amber-400">Friends Poker Club</h1>
+          <p class="text-xs text-slate-400">Montigny-le-Bretonneux • Association Loi 1901</p>
+        </div>
+      </div>
+      <div id="stats-counter" class="text-xs bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-slate-300">
+        Chargement des archives...
+      </div>
+    </div>
+
+    <!-- Menu de Navigation -->
+    <nav class="bg-slate-900 border-t border-slate-800 text-sm">
+      <div class="max-w-7xl mx-auto px-4 flex space-x-1 overflow-x-auto py-1">
+        <button onclick="switchTab('tab-accueil')" id="btn-tab-accueil" class="nav-btn px-3.5 py-2 rounded-lg font-medium transition text-amber-400 bg-slate-800/80">
+          🏠 Accueil
+        </button>
+        <button onclick="switchTab('tab-club')" id="btn-tab-club" class="nav-btn px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-slate-200">
+          ℹ️ Le Club & Règlements
+        </button>
+        <button onclick="switchTab('tab-tournois')" id="btn-tab-tournois" class="nav-btn px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-slate-200">
+          ♠️ Formats de Jeu
+        </button>
+        <button onclick="switchTab('tab-challenge')" id="btn-tab-challenge" class="nav-btn px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-slate-200">
+          🏆 Challenge de l'Amitié
+        </button>
+        <button onclick="switchTab('tab-tour-potes')" id="btn-tab-tour-potes" class="nav-btn px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-slate-200">
+          🌟 Tour des Potes
+        </button>
+        <button onclick="switchTab('tab-stats')" id="btn-tab-stats" class="nav-btn px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-slate-200">
+          📊 Membres & Fiches PDF
+        </button>
+        <button onclick="switchTab('tab-saisons')" id="btn-tab-saisons" class="nav-btn px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-slate-200">
+          🏛️ Archives (14 Saisons)
+        </button>
+        <button onclick="switchTab('tab-contact')" id="btn-tab-contact" class="nav-btn px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-slate-200">
+          📬 Contact
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Contenu des Pages -->
+  <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+
+    <!-- PAGE 1 : ACCUEIL -->
+    <div id="tab-accueil" class="tab-content">
+      <section class="bg-slate-900 border border-slate-800 rounded-2xl p-8 mb-8 shadow-xl">
+        <h2 class="text-2xl font-bold text-amber-400 mb-3">Bienvenue au Friends Poker Club</h2>
+        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+          Association de passionnés de poker à Montigny-le-Bretonneux. Nous nous réunissons dans la convivialité pour jouer au poker sans engagement d'argent.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-slate-950 p-5 rounded-xl border border-slate-800">
+            <h3 class="font-bold text-slate-100 mb-1">🗓️ Rendez-vous Hebdomadaire</h3>
+            <p class="text-xs text-slate-400">Le mercredi soir de 20h00 à 23h45 (Sit'n Go, Cash Game, Five-Card Draw, Heads-Up).</p>
+          </div>
+          <div class="bg-slate-950 p-5 rounded-xl border border-slate-800">
+            <h3 class="font-bold text-slate-100 mb-1">🏆 Championnat Mensuel</h3>
+            <p class="text-xs text-slate-400">Le Tour des Potes le dimanche (Formule Deep-stack 10 étapes par saison).</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PAGE 2 : LE CLUB & RÈGLEMENTS -->
+    <div id="tab-club" class="tab-content hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6">
+        <h2 class="text-xl font-bold text-amber-400 mb-4">La Charte d'Éthique & Règlements</h2>
+        <ul id="charte-list" class="space-y-3 text-sm text-slate-300 mb-6"></ul>
+        <h3 class="text-lg font-bold text-slate-200 mb-3">Documents Officiels PDF</h3>
+        <div id="docs-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </div>
+    </div>
+
+    <!-- PAGE 3 : FORMATS DE JEU -->
+    <div id="tab-tournois" class="tab-content hidden">
+      <h2 class="text-xl font-bold text-amber-400 mb-4">Règles & Formats des Compétitions</h2>
+      <div id="formats-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </div>
+
+    <!-- PAGE 4 : CHALLENGE DE L'AMITIÉ -->
+    <div id="tab-challenge" class="tab-content hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h2 class="text-xl font-bold text-amber-400 mb-2">Challenge de l'Amitié</h2>
+        <p class="text-xs text-slate-400 mb-6">Compétitions hebdomadaires du mercredi soir : Sit'n Go, Cash Game, Five-Card Draw et Coupe Heads-Up.</p>
+        <div id="challenge-details" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </div>
+    </div>
+
+    <!-- PAGE 5 : TOUR DES POTES -->
+    <div id="tab-tour-potes" class="tab-content hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h2 class="text-xl font-bold text-amber-400 mb-2">Tour des Potes (Deep-Stack)</h2>
+        <p class="text-xs text-slate-400 mb-4">Championnat mensuel composé de 10 étapes dominicales. Stack de départ : 20 000 jetons.</p>
+      </div>
+    </div>
+
+    <!-- PAGE 6 : MEMBRES & FICHES PDF -->
+    <div id="tab-stats" class="tab-content hidden">
+      <section class="mb-6 bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h2 class="text-xl font-bold text-amber-400 mb-2">Annuaire & Fiches Statistiques PDF</h2>
+        <p class="text-xs text-slate-400 mb-4">Retrouvez les fiches individuelles des 82 membres du club.</p>
+        <input type="text" id="search-input" placeholder="Rechercher par pseudo ou nom..." class="w-full max-w-md bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-400" />
+      </section>
+      <div id="members-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
+
+    <!-- PAGE 7 : HISTORIQUE 14 SAISONS -->
+    <div id="tab-saisons" class="tab-content hidden">
+      <h2 class="text-xl font-bold text-amber-400 mb-4">Historique des 14 Saisons (2011-2025)</h2>
+      <div id="seasons-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
+
+    <!-- PAGE 8 : CONTACT -->
+    <div id="tab-contact" class="tab-content hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-xl">
+        <h2 class="text-xl font-bold text-amber-400 mb-3">Nous Contacter</h2>
+        <p class="text-xs text-slate-300 mb-2">Friends Poker Club — Montigny-le-Bretonneux</p>
+        <p class="text-xs text-slate-400">Pour toute demande d'adhésion ou d'information, rendez-vous lors de nos sessions du mercredi soir à la Maison de Quartier.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4">
+      <p>Friends Poker Club — Association loi 1901 à Montigny-le-Bretonneux</p>
+    </div>
+  </footer>
+
+  <script>
+    let appData = {};
+
+    fetch('data_friends_poker_club_full.json')
+      .then(res => res.json())
+      .catch(() => fetch('data_friends_poker_club.json').then(res => res.json()))
+      .then(data => {
+        appData = data;
+        initApp();
+      });
+
+    function initApp() {
+      const membres = appData.membres || appData.members || [];
+      const saisons = appData.saisons_historiques || appData.historical_seasons || [];
+
+      document.getElementById('stats-counter').innerHTML = 
+        `<span class="text-amber-400 font-bold">${membres.length}</span> Membres | <span class="text-amber-400 font-bold">${saisons.length || 14}</span> Saisons`;
+
+      renderMembers(membres);
+      renderFormats(appData.formats_de_jeu || []);
+      renderReglements(appData.reglements_et_ethique || {});
+      renderSaisons(saisons);
+      renderDocs(appData.documents_source_archives || []);
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('text-amber-400', 'bg-slate-800/80');
+        btn.classList.add('text-slate-400');
+      });
+      document.getElementById(tabId).classList.remove('hidden');
+      const activeBtn = document.getElementById('btn-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('text-amber-400', 'bg-slate-800/80');
+        activeBtn.classList.remove('text-slate-400');
+      }
+    }
+
+    function getLocalPdfPath(rawPath) {
+      if (!rawPath || rawPath === '-') return null;
+      const filename = rawPath.split('/').pop();
+      return `pdf/${filename}`;
+    }
+
+    function renderMembers(members) {
+      const grid = document.getElementById('members-grid');
+      if (!grid) return;
+      grid.innerHTML = members.map(m => {
+        const pseudo = m.pseudonyme || m.pseudo;
+        const nom = m.nom_prenom_reel || m.nom_real;
+        const localPdf = getLocalPdfPath(m.lien_fiche_pdf || m.pdf_url);
+        return `
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+            <div>
+              <h4 class="font-bold text-slate-100">${pseudo}</h4>
+              <p class="text-xs text-slate-400 mb-3">${nom || 'Nom confidentiel'}</p>
+            </div>
+            ${localPdf 
+              ? `<a href="${localPdf}" target="_blank" class="py-1.5 px-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-lg text-center transition">
+                  📄 Fiche PDF
+                 </a>` 
+              : `<span class="text-xs text-slate-600 italic">Sans fiche PDF</span>`}
+          </div>`;
+      }).join('');
+    }
+
+    document.getElementById('search-input')?.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const allM = appData.membres || appData.members || [];
+      const filtered = allM.filter(m => (m.pseudonyme || m.pseudo || '').toLowerCase().includes(query) || (m.nom_prenom_reel || m.nom_real || '').toLowerCase().includes(query));
+      renderMembers(filtered);
+    });
+
+    function renderFormats(formats) {
+      const container = document.getElementById('formats-container');
+      if (container && formats.length) {
+        container.innerHTML = formats.map(f => `
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
+            <h3 class="font-bold text-amber-400 text-base mb-1">${f.nom}</h3>
+            <p class="text-xs text-slate-300 font-semibold mb-2">${f.type}</p>
+            <p class="text-xs text-slate-400">${f.structure}</p>
+          </div>`).join('');
+      }
+    }
+
+    function renderReglements(reg) {
+      const charteList = document.getElementById('charte-list');
+      if (charteList && reg.charte_ethique_gentleman) {
+        charteList.innerHTML = reg.charte_ethique_gentleman.map(item => `<li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span>${item}</span></li>`).join('');
+      }
+    }
+
+    function renderSaisons(saisons) {
+      const grid = document.getElementById('seasons-grid');
+      if (grid && saisons.length) {
+        grid.innerHTML = saisons.map(s => `
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+            <span class="text-xs font-bold text-amber-400">Saison ${s.saison || s.title}</span>
+            <h4 class="font-bold text-slate-200 text-sm mt-1">${s.libelle || s.description}</h4>
+          </div>`).join('');
+      }
+    }
+
+    function renderDocs(docs) {
+      const list = document.getElementById('docs-list');
+      if (list && docs.length) {
+        list.innerHTML = docs.map(d => `
+          <div class="bg-slate-950 border border-slate-800 rounded-lg p-3 flex justify-between items-center">
+            <span class="text-xs text-slate-300 font-medium">${d.titre}</span>
+            <a href="pdf/${encodeURIComponent(d.fichier)}" target="_blank" class="text-xs bg-amber-500 text-slate-950 px-2.5 py-1 rounded font-bold">PDF</a>
+          </div>`).join('');
+      }
+    }
+  </script>
+</body>
+</html>

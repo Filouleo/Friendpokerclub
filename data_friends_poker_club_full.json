@@ -1,0 +1,111 @@
+{
+  "club_info": {
+    "nom": "Friends Poker Club",
+    "commune": "Montigny-le-Bretonneux",
+    "objectifs": "Se réunir pour jouer au poker sans engagement d'argent conformément aux lois sur les jeux d'argent.",
+    "activites_principales": [
+      "Challenge de l'Amitié (Hebdomadaire, mercredi soir 20h00-23h45)",
+      "Tour des Potes (Mensuel, dimanche, formule Deep-stack 10 étapes par saison)"
+    ]
+  },
+  "membres": [],
+  "saisons_historiques": [],
+  "formats_de_jeu": [
+    {
+      "nom": "Tour des Potes",
+      "type": "Championnat mensuel (Dimanche)",
+      "format": "Texas Hold'em No Limit - Deep-stack",
+      "structure": "10 étapes par saison, retenue des 9 meilleurs résultats. Cave de départ : 20 000 jetons. Niveaux de 25/20/15 min.",
+      "specificites": "Système de Bounty pour le vainqueur de l'étape précédente (prime 10 000 jetons + BB)."
+    },
+    {
+      "nom": "Challenge de l'Amitié - Sit'n Go",
+      "type": "Hebdomadaire (Mercredi soir)",
+      "format": "Texas Hold'em No Limit",
+      "structure": "Tables de 6 à 10 joueurs. Inscriptions 20h-20h30. Stack de départ : 5 000 jetons."
+    },
+    {
+      "nom": "Challenge de l'Amitié - Cash Game",
+      "type": "Hebdomadaire (Mercredi soir)",
+      "format": "Texas Hold'em No Limit",
+      "structure": "Ouverture des tables 20h-23h30. Permet le re-cave et l'initiation des nouveaux joueurs."
+    },
+    {
+      "nom": "Challenge de l'Amitié - Five-Card Draw",
+      "type": "Hebdomadaire (Mercredi soir)",
+      "format": "Five-Card Draw (Poker fermé)",
+      "structure": "Capital de départ de 50 000 jetons attribué à l'adhésion pour la saison. Cave de 5 000 jetons. Blinds 50/100 fixes."
+    },
+    {
+      "nom": "Challenge de l'Amitié - Coupe Heads-Up",
+      "type": "Compétition en duel (Mercredi soir)",
+      "format": "Texas Hold'em No Limit - Tableau à élimination directe",
+      "structure": "Débute fin décembre / début janvier. Duels en 1 contre 1."
+    }
+  ],
+  "reglements_et_ethique": {
+    "charte_ethique_gentleman": [
+      "Respecter ses adversaires en jeu et les personnes qui l'entourent",
+      "Respecter les lieux de rassemblement (locaux non-fumeur de la mairie)",
+      "Être courtois : ne pas tenir de propos violents ni dans ses mots ni dans ses actes",
+      "Respecter les parties en cours et se tenir à un mètre des tables en jeu",
+      "Gagner ou perdre avec classe et retenue",
+      "Régler sa cotisation et soutenir les organisateurs bénévoles"
+    ],
+    "regles_generales_tournoi": {
+      "langue_officielle": "Français (Anglais toléré si joueur étranger)",
+      "termes_officiels": [
+        "bet (mise)",
+        "raise (relance)",
+        "call (paye)",
+        "fold (passe)",
+        "check (parole)",
+        "all in (tapis)"
+      ],
+      "sanctions_gradation": [
+        "Avertissement",
+        "Suspension temporaire (prélèvement des blinds)",
+        "Disqualification du tournoi",
+        "Exclusion de l'association"
+      ]
+    }
+  },
+  "documents_source_archives": [
+    {
+      "titre": "Règlement Intérieur 2021",
+      "fichier": "reglement-interieur 2021.pdf"
+    },
+    {
+      "titre": "Règlement Jeux & Compétitions (Mars 2025)",
+      "fichier": "reglement-jeux-et-competitions-202503.pdf"
+    },
+    {
+      "titre": "Règles Five-Card Draw",
+      "fichier": "Regles Five-Card Draw.pdf"
+    },
+    {
+      "titre": "Lexique FPC",
+      "fichier": "LexiqueFPC.pdf"
+    },
+    {
+      "titre": "Demande d'Adhésion 2025",
+      "fichier": "demande-adhesion-2025.pdf"
+    },
+    {
+      "titre": "Résultats Cash Game 2024/2025",
+      "fichier": "Cash 24_25.pdf"
+    },
+    {
+      "titre": "Résultats Five-Card Draw 2024/2025",
+      "fichier": "Five 24_25.pdf"
+    },
+    {
+      "titre": "Résultats Sit'n Go 2024/2025",
+      "fichier": "Sit 24_25.pdf"
+    },
+    {
+      "titre": "Résultats Tour des Potes 2024/2025",
+      "fichier": "Tour des Potes 24_25.pdf"
+    }
+  ]
+}

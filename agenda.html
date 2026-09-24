@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda des Friends | Friends Poker Club</title>
+    <meta name="description" content="Agenda des étapes du Tour des Potes du Friends Poker Club." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Expletus+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="subpage agenda-page">
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="./index.html#accueil" aria-label="Friends Poker Club, accueil">
+          <div class="brand-mark">F<span>♠</span></div>
+          <div>
+            <span class="brand-name">Friends Poker Club</span>
+            <small>Association de poker</small>
+          </div>
+        </a>
+        <nav class="nav-links" aria-label="Navigation principale">
+          <a href="./index.html#club">Le Club</a>
+          <a href="./index.html#rendez-vous">Tournois</a>
+          <a class="active" href="./agenda.html">Agenda des Friends</a>
+          <a href="./tour-des-potes.html">Tour des Potes</a>
+          <a href="./membres.html">Membres</a>
+          <a href="./historique.html">Historique</a>
+        </nav>
+        <a class="button button-primary button-small" href="mailto:contact@friendspokerclub.fr">Nous rejoindre <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+    <main class="subpage-main agenda-main">
+      <div class="container">
+        <a class="back-link" href="./index.html#accueil">← Retour à l’accueil</a>
+        <section class="subpage-hero agenda-hero" aria-labelledby="agenda-title">
+          <div>
+            <p class="eyebrow">Calendrier du club · Tour des Potes</p>
+            <h1 id="agenda-title">Agenda des <em>Friends.</em></h1>
+            <p class="subpage-lead">Retrouvez ici les dates des prochaines étapes du Tour des Potes, les horaires et les informations pratiques de chaque tournoi.</p>
+          </div>
+          <div class="subpage-hero-art" tabindex="0" aria-label="Ouvrir l’agenda en grand" role="button">
+            <img src="./agenda%202026%202027.png" alt="Agenda du Friends Poker Club 2026-2027" />
+          </div>
+        </section>
+
+        <section class="agenda-calendar" aria-labelledby="calendar-title">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Saison en cours</p>
+              <h2 id="calendar-title">Les prochaines<br /><em>étapes.</em></h2>
+            </div>
+            <p class="section-intro">Les dates seront ajoutées ici au fur et à mesure de la préparation de la saison.</p>
+          </div>
+          <div class="agenda-empty">
+            <span class="agenda-empty-mark">10</span>
+            <div>
+              <h3>Agenda bientôt disponible</h3>
+              <p>Les dates des dix étapes du Tour des Potes seront publiées prochainement par le Bureau.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="agenda-rules" aria-labelledby="agenda-info-title">
+          <div>
+            <p class="eyebrow">Repères</p>
+            <h2 id="agenda-info-title">Un dimanche par mois,<br /><em>toute une journée de poker.</em></h2>
+          </div>
+          <div class="agenda-info-list">
+            <div><span>Format</span><strong>Deep-stack à structure lente</strong></div>
+            <div><span>Rythme</span><strong>Une étape par mois</strong></div>
+            <div><span>Lieu</span><strong>Montigny-le-Bretonneux</strong></div>
+          </div>
+        </section>
+
+        <div class="agenda-actions">
+          <a class="button button-primary" href="./tour-des-potes.html">Découvrir le Tour des Potes <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="mailto:contact@friendspokerclub.fr">Contacter le Bureau <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <h3>Friends Poker Club</h3>
+          <p>Association loi 1901 · Montigny-le-Bretonneux</p>
+        </div>
+        <div class="footer-meta"><a href="./index.html#accueil">Retour à l’accueil ↗</a></div>
+      </div>
+    </footer>
+  <script>
+    const agendaArt = document.querySelector('.agenda-page .subpage-hero-art');
+    if (agendaArt) {
+      const toggleAgendaView = () => {
+        agendaArt.classList.toggle('is-expanded');
+      };
+      agendaArt.addEventListener('click', toggleAgendaView);
+      agendaArt.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleAgendaView();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

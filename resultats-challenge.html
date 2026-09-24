@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge de l'Amitié | Friends Poker Club</title>
+    <style>
+      :root {
+        --rose-50: #fff2f7;
+        --rose-100: #fbe8ef;
+        --rose-200: #f6d4e5;
+        --rose-300: #ee9fc0;
+        --rose-400: #df6fa3;
+        --rose-500: #bf4d7d;
+        --rose-600: #9d315c;
+        --rose-700: #6f2141;
+        --ink: #1a1218;
+        --ink-soft: #4e3d49;
+        --paper: #fffafc;
+        --panel: #fff5f9;
+        --panel-strong: #f8dfe8;
+        --line: rgba(132, 56, 85, 0.18);
+        --shadow: 0 22px 48px rgba(111, 33, 65, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(180deg, #fffafc 0%, #fdf0f7 100%);
+        color: var(--ink);
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .page-shell {
+        max-width: 1380px;
+        margin: 0 auto;
+        padding: 28px 22px 60px;
+      }
+
+      .page-toolbar {
+        margin-bottom: 22px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: var(--ink);
+        color: #fff;
+        font-weight: 800;
+      }
+
+      .results-layout {
+        display: grid;
+        grid-template-columns: 340px minmax(0, 1fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .results-sidebar {
+        background: linear-gradient(180deg, #fff6fa 0%, #f8edf3 100%);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 20px 16px;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 18px;
+      }
+
+      .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 8px 10px 16px;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 12px;
+      }
+
+      .sidebar-title {
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: var(--rose-600);
+      }
+
+      .sidebar-badge {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--rose-400), var(--rose-600));
+        color: #fff;
+        font-weight: 900;
+        box-shadow: 0 10px 24px rgba(181, 72, 118, 0.3);
+      }
+
+      .result-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .result-item {
+        width: 100%;
+        text-align: left;
+        border: 1px solid transparent;
+        background: rgba(255,255,255,0.4);
+        border-radius: 16px;
+        padding: 14px 12px;
+        cursor: pointer;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .result-item:hover,
+      .result-item:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(191, 77, 125, 0.35);
+        box-shadow: 0 10px 18px rgba(191, 77, 125, 0.1);
+      }
+
+      .result-item.is-active {
+        background: linear-gradient(135deg, rgba(191, 77, 125, 0.12), rgba(255, 255, 255, 0.7));
+        border-color: rgba(191, 77, 125, 0.4);
+      }
+
+      .result-tag {
+        display: inline-block;
+        margin-bottom: 6px;
+        font-size: 0.66rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--rose-600);
+        font-weight: 800;
+      }
+
+      .result-name {
+        display: block;
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--ink);
+      }
+
+      .result-date {
+        display: inline-block;
+        margin-top: 8px;
+        color: var(--ink-soft);
+        font-size: 0.76rem;
+      }
+
+      .results-main {
+        background: linear-gradient(180deg, #fff9fb 0%, #fff4f8 100%);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 28px;
+        min-height: 520px;
+        box-shadow: var(--shadow);
+      }
+
+      .results-header {
+        margin-bottom: 20px;
+      }
+
+      .results-kicker {
+        margin: 0 0 12px;
+        color: var(--rose-600);
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+
+      .results-header h1 {
+        margin: 0;
+        font-size: clamp(2.1rem, 4vw, 3.4rem);
+        letter-spacing: -0.06em;
+        color: var(--ink);
+      }
+
+      .results-header p {
+        margin: 10px 0 0;
+        color: var(--ink-soft);
+        font-size: 1rem;
+      }
+
+      .result-panel {
+        width: 100%;
+        min-height: 420px;
+        display: grid;
+        place-items: center;
+      }
+
+      .result-panel-empty {
+        width: 100%;
+        min-height: 320px;
+        border: 1px dashed rgba(191, 77, 125, 0.5);
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(249, 213, 227, 0.3));
+        display: grid;
+        place-items: center;
+        text-align: center;
+        color: var(--ink-soft);
+        padding: 24px;
+      }
+
+      .placeholder-mark {
+        width: 84px;
+        height: 84px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--rose-400), var(--rose-600));
+        color: #fff;
+        font-size: 2rem;
+        font-weight: 900;
+        margin: 0 auto 18px;
+        box-shadow: 0 18px 32px rgba(191, 77, 125, 0.25);
+      }
+
+      .result-panel-empty h2 {
+        margin: 0 0 8px;
+        font-size: 1.4rem;
+      }
+
+      .result-panel-empty p {
+        margin: 0;
+        max-width: 420px;
+        line-height: 1.6;
+      }
+
+      .result-preview-shell {
+        width: 100%;
+        display: none;
+      }
+
+      .result-preview-shell.is-visible {
+        display: block;
+      }
+
+      .result-preview-button {
+        width: 100%;
+        border: 0;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(111, 33, 65, 0.12);
+      }
+
+      .result-preview-button img {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        border: 2px solid rgba(70, 22, 42, 0.08);
+      }
+
+      .preview-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(21, 14, 18, 0.72);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 26px;
+        z-index: 1000;
+      }
+
+      .preview-modal.is-open {
+        display: flex;
+      }
+
+      .preview-modal-inner {
+        position: relative;
+        width: min(95vw, 1200px);
+        background: #fff;
+        border-radius: 18px;
+        padding: 12px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      }
+
+      .preview-modal-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+      }
+
+      .preview-close {
+        position: absolute;
+        top: -16px;
+        right: -16px;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        border-radius: 50%;
+        background: var(--rose-600);
+        color: white;
+        font-size: 1.6rem;
+        cursor: pointer;
+      }
+
+      .ranking-section {
+        margin-top: 30px;
+        background: linear-gradient(180deg, #fff4f8 0%, #fff9fc 100%);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .ranking-banner {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 22px;
+        background: linear-gradient(135deg, #f7d6e4 0%, #f1b3ce 34%, #d86c9d 100%);
+        border-bottom: 1px solid rgba(134, 51, 80, 0.2);
+      }
+
+      .brand-badge {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(26, 18, 24, 0.92);
+        color: #fff;
+        font-weight: 900;
+        font-size: 1.5rem;
+        box-shadow: inset 0 0 0 4px rgba(255,255,255,0.08);
+      }
+
+      .ranking-banner h2 {
+        margin: 4px 0 0;
+        font-size: clamp(1.8rem, 3vw, 2.7rem);
+        letter-spacing: -0.06em;
+      }
+
+      .banner-kicker {
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: rgba(26, 18, 24, 0.72);
+      }
+
+      .ranking-table-wrap {
+        padding: 18px 18px 22px;
+      }
+
+      .general-ranking {
+        width: 100%;
+        border-collapse: collapse;
+        background: linear-gradient(180deg, #fffafc 0%, #fff1f6 100%);
+        border: 1px solid rgba(120, 49, 80, 0.22);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .general-ranking th,
+      .general-ranking td {
+        border: 1px solid rgba(120, 49, 80, 0.18);
+        padding: 12px 10px;
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .general-ranking thead th {
+        background: linear-gradient(135deg, #f9dfe9 0%, #f3bfd3 100%);
+        color: var(--ink);
+        font-weight: 800;
+      }
+
+      .general-ranking tbody tr:nth-child(odd) {
+        background: rgba(255,255,255,0.25);
+      }
+
+      .general-ranking tbody tr:nth-child(even) {
+        background: rgba(247, 214, 228, 0.35);
+      }
+
+      .general-ranking tbody tr:first-child {
+        background: linear-gradient(135deg, rgba(249, 223, 233, 0.8), rgba(218, 136, 174, 0.32));
+      }
+
+      @media (max-width: 980px) {
+        .results-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .results-sidebar {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page-shell">
+      <div class="page-toolbar">
+        <a class="back-link" href="./index.html">← Accueil</a>
+      </div>
+
+      <div class="results-layout">
+        <aside class="results-sidebar" aria-label="Liste des fiches de résultats">
+          <div class="sidebar-header">
+            <span class="sidebar-title">Résultats</span>
+            <span class="sidebar-badge">F</span>
+          </div>
+
+          <div class="result-list">
+            <button class="result-item is-active" type="button" data-title="Challenge de l'Amitié" data-date="23/09/2026" data-src="./Résultats/23092026.JPG" aria-pressed="true">
+              <span class="result-tag">Challenge</span>
+              <span class="result-name">Challenge de l'Amitié</span>
+              <span class="result-date">23/09/2026</span>
+            </button>
+          </div>
+        </aside>
+
+        <section class="results-main" aria-live="polite">
+          <div class="results-header">
+            <p class="results-kicker">Challenge hebdomadaire</p>
+            <h1 id="resultTitle">Challenge de l'Amitié</h1>
+            <p id="resultDate">23/09/2026</p>
+          </div>
+
+          <div class="result-panel">
+            <div class="result-panel-empty" id="resultPlaceholder">
+              <div>
+                <div class="placeholder-mark">F</div>
+                <h2>Choisissez une fiche</h2>
+                <p>Cliquez sur une fiche dans la liste pour afficher le résultat et le détail associé.</p>
+              </div>
+            </div>
+
+            <div class="result-preview-shell" id="resultPreviewShell">
+              <button class="result-preview-button" id="openPreview" type="button" aria-label="Afficher la fiche en grand format">
+                <img id="featuredImage" src="./Résultats/23092026.JPG" alt="Fiche Challenge de l'Amitié" />
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="ranking-section" aria-labelledby="general-ranking-title">
+        <div class="ranking-banner">
+          <div class="brand-badge" aria-hidden="true">F</div>
+          <div>
+            <div class="banner-kicker">Friends Poker Club</div>
+            <h2 id="general-ranking-title">Classement général</h2>
+          </div>
+        </div>
+
+        <div class="ranking-table-wrap">
+          <table class="general-ranking">
+            <thead>
+              <tr>
+                <th>Cl.</th>
+                <th>Joueur</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody id="ranking-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div class="preview-modal" id="previewModal" aria-hidden="true">
+      <div class="preview-modal-inner">
+        <button class="preview-close" type="button" aria-label="Fermer l'aperçu">×</button>
+        <img id="modalImage" class="preview-modal-image" src="./Résultats/23092026.JPG" alt="Fiche Challenge de l'Amitié en grand format" />
+      </div>
+    </div>
+
+    <script>
+      const resultRows = [
+        { joueur: 'Filou', points: 18 },
+        { joueur: 'Special K', points: 14 },
+        { joueur: 'Ghost', points: 10 },
+        { joueur: 'Djé', points: 6 },
+        { joueur: 'Chattard', points: 4 },
+        { joueur: 'Milady', points: 3 },
+        { joueur: 'Kalvace', points: 2 },
+        { joueur: 'Mickey', points: 1 },
+        { joueur: 'Hvala', points: 18 },
+        { joueur: 'Mikyb', points: 14 },
+        { joueur: 'El Nico', points: 10 },
+        { joueur: 'Jardinier', points: 6 },
+        { joueur: 'Jackarr', points: 4 },
+        { joueur: 'Tilititi', points: 3 },
+        { joueur: 'Zorglub', points: 2 },
+        { joueur: 'Calcifer', points: 1 },
+        { joueur: 'Nin', points: 19 },
+        { joueur: 'Startouf', points: 15 },
+        { joueur: 'Looping', points: 11 },
+        { joueur: 'Drizz', points: 7 },
+        { joueur: 'Samben', points: 5 },
+        { joueur: 'Chavi24', points: 4 },
+        { joueur: 'Lio', points: 3 },
+        { joueur: 'Vodkamartini', points: 2 },
+        { joueur: 'Ac3 Cub3', points: 1 }
+      ];
+
+      const totals = {};
+      resultRows.forEach(({ joueur, points }) => {
+        totals[joueur] = (totals[joueur] || 0) + Number(points);
+      });
+
+      const ranking = Object.entries(totals)
+        .map(([joueur, points]) => ({ joueur, points }))
+        .sort((a, b) => b.points - a.points || a.joueur.localeCompare(b.joueur));
+
+      const tbody = document.getElementById('ranking-body');
+      tbody.innerHTML = ranking
+        .map((entry, index) => `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${entry.joueur}</td>
+            <td>${entry.points}</td>
+          </tr>
+        `)
+        .join('');
+
+      const resultPlaceholder = document.getElementById('resultPlaceholder');
+      const resultPreviewShell = document.getElementById('resultPreviewShell');
+      const featuredImage = document.getElementById('featuredImage');
+      const modalImage = document.getElementById('modalImage');
+      const resultTitle = document.getElementById('resultTitle');
+      const resultDate = document.getElementById('resultDate');
+      const previewModal = document.getElementById('previewModal');
+      const previewClose = document.querySelector('.preview-close');
+      const resultItems = document.querySelectorAll('.result-item');
+
+      function selectResult(item) {
+        resultItems.forEach((button) => {
+          const isActive = button === item;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+
+        const { title, date, src } = item.dataset;
+        resultTitle.textContent = title;
+        resultDate.textContent = date;
+        featuredImage.src = src;
+        modalImage.src = src;
+        featuredImage.alt = `${title} du ${date}`;
+        modalImage.alt = `${title} du ${date} en grand format`;
+
+        resultPlaceholder.style.display = 'none';
+        resultPreviewShell.classList.add('is-visible');
+      }
+
+      resultItems.forEach((item) => {
+        item.addEventListener('click', () => selectResult(item));
+      });
+
+      document.getElementById('openPreview').addEventListener('click', () => {
+        previewModal.classList.add('is-open');
+        previewModal.setAttribute('aria-hidden', 'false');
+      });
+
+      previewClose.addEventListener('click', () => {
+        previewModal.classList.remove('is-open');
+        previewModal.setAttribute('aria-hidden', 'true');
+      });
+
+      previewModal.addEventListener('click', (event) => {
+        if (event.target === previewModal) {
+          previewModal.classList.remove('is-open');
+          previewModal.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && previewModal.classList.contains('is-open')) {
+          previewModal.classList.remove('is-open');
+          previewModal.setAttribute('aria-hidden', 'true');
+        }
+      });
+    </script>
+  </body>
+</html>

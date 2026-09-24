@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^node -e 'const fs=require\\(\"fs\"\\); const d=JSON\\.parse\\(fs\\.readFileSync\\(\"club-data\\.json\"\\)\\); const files=fs\\.readdirSync\\(\"\\.\"\\)\\.filter\\(f=>f\\.endsWith\\(\"\\.pdf\"\\)\\); console\\.log\\(d\\.members\\.length\\+\" membres, \"\\+files\\.length\\+\" PDF locaux\"\\)'$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

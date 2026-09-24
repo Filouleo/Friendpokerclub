@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friends Poker Club</title>
+  <style>
+    :root {
+      --bg: #101218;
+      --bg-2: #171b22;
+      --panel: #1b1f2a;
+      --line: #2d3440;
+      --text: #f5f6f8;
+      --muted: #b4bcc9;
+      --gold: #f6c76e;
+      --gold-2: #d99a2a;
+      --green: #66d59a;
+      --red: #f26b6b;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #1f2530 0%, var(--bg) 28%, #0d1016 100%);
+      color: var(--text);
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(1100px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(16, 18, 24, 0.8);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      display: grid;
+      place-items: center;
+      color: #15120d;
+      font-weight: 900;
+    }
+    .brand-name { font-size: 1.1rem; }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted);
+    }
+    .nav-links a { opacity: .9; }
+    .nav-links a:hover { opacity: 1; color: var(--text); }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: .8rem 1.2rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #120f0c;
+      font-weight: 800;
+    }
+    .hero { padding: 50px 0 20px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 30px;
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      font-size: .72rem;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: .95;
+      letter-spacing: -.06em;
+      margin: 0;
+    }
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -.05em;
+      margin: 0;
+    }
+    .lead {
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      max-width: 620px;
+      margin-top: 20px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .text-link { color: var(--gold); font-weight: 700; }
+    .hero-note {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+    }
+    .hero-note img {
+      width: 100%;
+      border-radius: 18px;
+      display: block;
+    }
+    .hero-note-caption { padding-top: 16px; }
+    .note-index {
+      color: var(--gold);
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .hero-note-caption p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 10px 0 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 30px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px 18px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.16);
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .stat-value {
+      display: block;
+      margin-top: 12px;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -.06em;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      margin: 30px 0 18px;
+    }
+    .section-intro {
+      max-width: 480px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .home-links-grid, .program-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .home-link-card, .program-card {
+      display: block;
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      position: relative;
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    .home-link-card:hover, .program-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(246,199,110,.4);
+    }
+    .home-link-number, .program-day {
+      display: inline-block;
+      color: var(--gold);
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .home-link-card h3, .program-card h3 { margin: 0 0 8px; font-size: 1.4rem; }
+    .home-link-card p, .program-card p { margin: 0; color: var(--muted); line-height: 1.6; }
+    .home-link-arrow { position: absolute; right: 18px; bottom: 16px; color: var(--gold); font-size: 1.3rem; }
+    .program-card { min-height: 220px; }
+    .formats-section { padding-top: 10px; }
+    .format-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .format-item {
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+    }
+    .format-item h3 { margin: 0 0 8px; }
+    .format-item p, .format-item small { color: var(--muted); line-height: 1.6; }
+    .members-toolbar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 18px 0 20px;
+    }
+    .filter-btn {
+      background: rgba(255,255,255,.02);
+      color: var(--text);
+      border: 1px solid var(--line);
+      padding: .7rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #140f0b;
+      border-color: transparent;
+      font-weight: 800;
+    }
+    input[type="search"] {
+      flex: 1;
+      min-width: 220px;
+      padding: .82rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color: var(--text);
+    }
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .member-card {
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .member-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .member-card h3 { margin: 0; font-size: 1.4rem; }
+    .member-card p { margin: 4px 0 0; color: var(--muted); }
+    .badge {
+      padding: .45rem .65rem;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 800;
+    }
+    .badge.available {
+      background: rgba(102,213,154,.12);
+      color: var(--green);
+      border: 1px solid rgba(102,213,154,.35);
+    }
+    .badge.unavailable {
+      background: rgba(242,107,107,.08);
+      color: var(--red);
+      border: 1px solid rgba(242,107,107,.3);
+    }
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: .35rem .6rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .72rem;
+    }
+    .member-profile-link {
+      margin-top: auto;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .footer {
+      padding: 40px 0 80px;
+      color: var(--muted);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+    @media (max-width:900px) {
+      .hero-grid, .members-grid, .home-links-grid, .program-grid, .format-showcase { grid-template-columns: 1fr 1fr; }
+      .section-header { display: block; }
+      .nav { flex-wrap: wrap; padding: 12px 0; }
+    }
+    @media (max-width:640px) {
+      .hero-grid, .members-grid, .home-links-grid, .program-grid, .format-showcase, .stats-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 10px 14px; font-size: .9rem; }
+      .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">F♠</div>
+        <div>
+          <div class="brand-name">Friends Poker Club</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Accueil</a>
+        <a href="#">Le club</a>
+        <a href="#">Formats</a>
+        <a href="#">Membres</a>
+        <a href="#">Historique</a>
+      </nav>
+      <a class="button" href="mailto:contact@friendspokerclub.fr">Nous rejoindre</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Depuis 2011 · Île-de-France</p>
+          <h1>Le poker se joue mieux <em>ensemble.</em></h1>
+          <p class="lead">Friends Poker Club rassemble des passionnés autour de parties régulières, d'une compétition saine et d'une vraie vie de club.</p>
+          <div class="cta-row">
+            <a class="button" href="#club">Découvrir le club</a>
+            <a class="text-link" href="#">Écrire au bureau</a>
+          </div>
+        </div>
+        <div class="hero-note">
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80" alt="poker table" />
+          <div class="hero-note-caption">
+            <span class="note-index">Friends Poker Club</span>
+            <p>Une association, des souvenirs de table et une place pour chaque style de jeu.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stats-grid" id="stats-grid"></div>
+    </section>
+
+    <section id="club" style="padding-top:18px">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Le club</p>
+          <h2>Une table ouverte, un esprit de famille.</h2>
+        </div>
+        <p class="section-intro">Des soirées conviviales, des formats variés, et un vrai cadre pour progresser à plusieurs.</p>
+      </div>
+    </section>
+
+    <section id="formats" style="padding-top:14px">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Formats & tournois</p>
+          <h2>Choisissez votre façon de jouer.</h2>
+        </div>
+        <p class="section-intro">Texas Hold'em, Five-Card Draw et défis de la soirée : chaque format apporte sa propre énergie.</p>
+      </div>
+      <div class="format-showcase" id="format-showcase"></div>
+    </section>
+
+    <section style="padding-top:12px">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Membres</p>
+          <h2>Retrouvez les joueurs.</h2>
+        </div>
+      </div>
+
+      <div class="members-toolbar">
+        <div id="filters" aria-label="Filtres"></div>
+        <input id="member-search" type="search" placeholder="Rechercher un membre..." />
+      </div>
+
+      <div class="members-grid" id="members-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Friends Poker Club</strong>
+        <div>Association de poker</div>
+      </div>
+      <div id="footer-date">Export du 2026-09-17</div>
+    </div>
+  </footer>
+
+  <script>
+    const clubData = {
+      meta: { total_members: 64, total_seasons: 9, export_date: '2026-09-17' },
+      members: [
+        { pseudo: 'Ac3 Cub3', nom_real: 'A. Cub3', notes: 'Régulier' },
+        { pseudo: 'Startouf', nom_real: 'A. M.', notes: 'Tournoi' },
+        { pseudo: 'Baba', nom_real: 'B. A.', notes: 'Cash game' },
+        { pseudo: 'Drizz', nom_real: 'D. R.', notes: 'Deep stack' },
+        { pseudo: 'Le Heron', nom_real: 'H. L.', notes: 'Spécialiste' },
+        { pseudo: 'Kalvace', nom_real: 'K. V.', notes: 'Tactique' },
+        { pseudo: 'Lio', nom_real: 'L. A.', notes: 'Poker fermé' },
+        { pseudo: 'Vascolito', nom_real: 'V. M.', notes: 'Compétition' }
+      ]
+    };
+
+    const formatData = [
+      { nom: 'Texas Holdem', type: 'No Limit', structure: 'CASH · 1 table · 20h00' },
+      { nom: 'Five-Card Draw', type: 'Poker fermé', structure: 'FORMAT · 5 cartes · soirée' },
+      { nom: 'Barre / Challenge', type: 'Tournoi', structure: 'AMITIÉ · 10 joueurs max · points' }
+    ];
+
+    const filters = [
+      { label: 'Tous', value: 'all' },
+      { label: 'Avec PDF', value: 'pdf' },
+      { label: 'Sans PDF', value: 'no-pdf' }
+    ];
+
+    function getMemberPdf(member) {
+      const pseudo = (member.pseudo || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const map = {
+        'acecub3': 'Ac3 Cub3.pdf',
+        'startouf': 'Startouf.pdf',
+        'leheron': 'Le Heron.pdf',
+        'drizz': 'Drizz.pdf',
+        'kalvace': 'Kalvace.pdf',
+        'lio': 'Lio.pdf'
+      };
+      return map[pseudo] || null;
+    }
+
+    function renderStats() {
+      const statsGrid = document.getElementById('stats-grid');
+      const stats = [
+        { label: 'Membres', value: clubData.meta.total_members },
+        { label: 'Saisons', value: clubData.meta.total_seasons },
+        { label: 'Fiches PDF', value: clubData.members.filter(m => getMemberPdf(m)).length },
+        { label: 'Notes club', value: clubData.members.filter(m => m.notes).length }
+      ];
+      statsGrid.innerHTML = stats.map(item => `
+        <article class="stat-card">
+          <span class="stat-label">${item.label}</span>
+          <strong class="stat-value">${item.value}</strong>
+        </article>
+      `).join('');
+      document.getElementById('footer-date').textContent = `Export du ${clubData.meta.export_date}`;
+    }
+
+    function renderFormats() {
+      const wrap = document.getElementById('format-showcase');
+      wrap.innerHTML = formatData.map((f, i) => `
+        <article class="format-item">
+          <span class="home-link-number">0${i + 1}</span>
+          <h3>${f.nom}</h3>
+          <p>${f.type}</p>
+          <small>${f.structure}</small>
+        </article>
+      `).join('');
+    }
+
+    function renderFilters(active = 'all') {
+      const container = document.getElementById('filters');
+      container.innerHTML = filters.map(f => `
+        <button class="filter-btn ${f.value === active ? 'active' : ''}" data-filter="${f.value}">
+          ${f.label}
+        </button>
+      `).join('');
+
+      container.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const value = btn.dataset.filter;
+          renderFilters(value);
+          const search = document.getElementById('member-search').value || '';
+          renderMembers(value, search);
+        });
+      });
+    }
+
+    function renderMembers(filter = 'all', search = '') {
+      let members = [...clubData.members];
+
+      if (filter === 'pdf') members = members.filter(m => getMemberPdf(m));
+      if (filter === 'no-pdf') members = members.filter(m => !getMemberPdf(m));
+
+      if (search.trim()) {
+        const q = search.toLowerCase();
+        members = members.filter(m => `${m.pseudo} ${m.nom_real}`.toLowerCase().includes(q));
+      }
+
+      const grid = document.getElementById('members-grid');
+      if (!members.length) {
+        grid.innerHTML = '<div class="member-card"><strong>Aucun membre trouvé.</strong></div>';
+        return;
+      }
+
+      grid.innerHTML = members.map(member => {
+        const pdf = getMemberPdf(member);
+        return `
+          <article class="member-card">
+            <div class="member-card-header">
+              <div>
+                <h3>${member.pseudo}</h3>
+                <p>${member.nom_real}</p>
+              </div>
+              <span class="badge ${pdf ? 'available' : 'unavailable'}">${pdf ? 'PDF' : 'No PDF'}</span>
+            </div>
+            <div>
+              ${member.notes ? `<span class="meta-pill">${member.notes}</span>` : ''}
+            </div>
+            <a class="member-profile-link" href="${pdf || '#'}">${pdf ? 'Voir la fiche' : 'Fiche à venir'} ↗</a>
+          </article>
+        `;
+      }).join('');
+    }
+
+    document.getElementById('member-search').addEventListener('input', (e) => {
+      renderMembers(document.querySelector('.filter-btn.active')?.dataset.filter || 'all', e.target.value);
+    });
+
+    renderStats();
+    renderFormats();
+    renderFilters('all');
+    renderMembers('all', '');
+  </script>
+</body>
+</html>
