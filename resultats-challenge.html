@@ -48,6 +48,39 @@
         font: inherit;
       }
 
+      .page-badge {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 50;
+        min-width: 52px;
+        height: 34px;
+        padding: 0 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(191, 77, 125, 0.28);
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: 0 12px 28px rgba(111, 33, 65, 0.12);
+        display: grid;
+        place-items: center;
+        color: var(--rose-600);
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        backdrop-filter: blur(8px);
+      }
+
+      @media (max-width: 640px) {
+        .page-badge {
+          right: 12px;
+          bottom: 12px;
+          min-width: 46px;
+          height: 30px;
+          font-size: 0.66rem;
+          letter-spacing: 0.1em;
+        }
+      }
+
       .page-shell {
         max-width: 1380px;
         margin: 0 auto;
@@ -434,6 +467,16 @@
               <span class="result-name">Challenge de l'Amitié</span>
               <span class="result-date">23/09/2026</span>
             </button>
+            <button class="result-item" type="button" data-title="Challenge de l'Amitié" data-date="16/09/2026" data-src="./Résultats/1609 (1).png" aria-pressed="false">
+              <span class="result-tag">Challenge</span>
+              <span class="result-name">Challenge de l'Amitié</span>
+              <span class="result-date">16/09/2026</span>
+            </button>
+            <button class="result-item" type="button" data-title="Challenge de l'Amitié" data-date="09/09/2026" data-src="./Résultats/0909.png" aria-pressed="false">
+              <span class="result-tag">Challenge</span>
+              <span class="result-name">Challenge de l'Amitié</span>
+              <span class="result-date">09/09/2026</span>
+            </button>
           </div>
         </aside>
 
@@ -456,6 +499,7 @@
             <div class="result-preview-shell" id="resultPreviewShell">
               <button class="result-preview-button" id="openPreview" type="button" aria-label="Afficher la fiche en grand format">
                 <img id="featuredImage" src="./Résultats/23092026.JPG" alt="Fiche Challenge de l'Amitié" />
+                <iframe id="featuredPdf" title="Fiche PDF Challenge de l'Amitié" src="" style="display:none; width:100%; height:100%; border:0; border-radius: 18px;"></iframe>
               </button>
             </div>
           </div>
@@ -490,41 +534,171 @@
       <div class="preview-modal-inner">
         <button class="preview-close" type="button" aria-label="Fermer l'aperçu">×</button>
         <img id="modalImage" class="preview-modal-image" src="./Résultats/23092026.JPG" alt="Fiche Challenge de l'Amitié en grand format" />
+        <iframe id="modalPdf" title="Vue détaillée du PDF" src="" style="display:none; width:100%; height:100%; border:0; border-radius: 18px;"></iframe>
       </div>
     </div>
 
     <script>
-      const resultRows = [
-        { joueur: 'Filou', points: 18 },
-        { joueur: 'Special K', points: 14 },
-        { joueur: 'Ghost', points: 10 },
-        { joueur: 'Djé', points: 6 },
-        { joueur: 'Chattard', points: 4 },
-        { joueur: 'Milady', points: 3 },
-        { joueur: 'Kalvace', points: 2 },
-        { joueur: 'Mickey', points: 1 },
-        { joueur: 'Hvala', points: 18 },
-        { joueur: 'Mikyb', points: 14 },
-        { joueur: 'El Nico', points: 10 },
-        { joueur: 'Jardinier', points: 6 },
-        { joueur: 'Jackarr', points: 4 },
-        { joueur: 'Tilititi', points: 3 },
-        { joueur: 'Zorglub', points: 2 },
-        { joueur: 'Calcifer', points: 1 },
-        { joueur: 'Nin', points: 19 },
-        { joueur: 'Startouf', points: 15 },
-        { joueur: 'Looping', points: 11 },
-        { joueur: 'Drizz', points: 7 },
-        { joueur: 'Samben', points: 5 },
-        { joueur: 'Chavi24', points: 4 },
-        { joueur: 'Lio', points: 3 },
-        { joueur: 'Vodkamartini', points: 2 },
-        { joueur: 'Ac3 Cub3', points: 1 }
+      const resultSheets = [
+        {
+          title: "Challenge de l'Amitié",
+          date: '23/09/2026',
+          src: './Résultats/23092026.JPG',
+          scores: [
+            { joueur: 'Filou', points: 18 },
+            { joueur: 'Special K', points: 14 },
+            { joueur: 'Ghost', points: 10 },
+            { joueur: 'Djé', points: 6 },
+            { joueur: 'Chattard', points: 4 },
+            { joueur: 'Milady', points: 3 },
+            { joueur: 'Kalvace', points: 2 },
+            { joueur: 'Mickey', points: 1 },
+            { joueur: 'Hvala', points: 18 },
+            { joueur: 'Mikyb', points: 14 },
+            { joueur: 'El Nico', points: 10 },
+            { joueur: 'Jardinier', points: 6 },
+            { joueur: 'Jackarr', points: 4 },
+            { joueur: 'Tilititi', points: 3 },
+            { joueur: 'Zorglub', points: 2 },
+            { joueur: 'Calcifer', points: 1 },
+            { joueur: 'Nin', points: 19 },
+            { joueur: 'Startouf', points: 15 },
+            { joueur: 'Looping', points: 11 },
+            { joueur: 'Drizz', points: 7 },
+            { joueur: 'Samben', points: 5 },
+            { joueur: 'Chavi24', points: 4 },
+            { joueur: 'Lio', points: 3 },
+            { joueur: 'Vodkamartini', points: 2 },
+            { joueur: 'Ac3 Cub3', points: 1 }
+          ]
+        },
+        {
+          title: "Challenge de l'Amitié",
+          date: '16/09/2026',
+          src: './Résultats/1609 (1).png',
+          scores: [
+            { joueur: 'Special K', points: 17 },
+            { joueur: 'Drizz', points: 13 },
+            { joueur: 'Tilititi', points: 9 },
+            { joueur: 'Asus2', points: 5 },
+            { joueur: 'Batman', points: 3 },
+            { joueur: 'Kalvace', points: 2 },
+            { joueur: 'Helou', points: 1 },
+            { joueur: 'Djé', points: 16 },
+            { joueur: 'Filou', points: 12 },
+            { joueur: 'Mickey', points: 8 },
+            { joueur: 'Chattard', points: 4 },
+            { joueur: 'Startouf', points: 2 },
+            { joueur: 'El Nico', points: 1 },
+            { joueur: 'Mikyb', points: 16 },
+            { joueur: 'Lio', points: 12 },
+            { joueur: 'Calcifer', points: 8 },
+            { joueur: 'Samben', points: 4 },
+            { joueur: 'Jackarr', points: 2 },
+            { joueur: 'Milady', points: 1 },
+            { joueur: 'Nin', points: 17 },
+            { joueur: 'Ac3 Cub3', points: 13 },
+            { joueur: 'Hvala', points: 9 },
+            { joueur: 'Looping', points: 5 },
+            { joueur: 'Ghost', points: 3 },
+            { joueur: 'Vodkamartini', points: 2 },
+            { joueur: 'Zorglub', points: 1 }
+          ]
+        },
+        {
+          title: "Challenge de l'Amitié",
+          date: '09/09/2026',
+          src: './Résultats/0909.png',
+          scores: [
+            { joueur: 'Mikyb', points: 17 },
+            { joueur: 'Chattard', points: 13 },
+            { joueur: 'Jardinier', points: 9 },
+            { joueur: 'Special K', points: 5 },
+            { joueur: 'Milady', points: 3 },
+            { joueur: 'Mickey', points: 2 },
+            { joueur: 'Tilititi', points: 1 },
+            { joueur: 'Hvala', points: 16 },
+            { joueur: 'Zorglub', points: 12 },
+            { joueur: 'Samben', points: 8 },
+            { joueur: 'Niamor', points: 4 },
+            { joueur: 'Filou', points: 2 },
+            { joueur: 'Harmus', points: 1 },
+            { joueur: 'El Nico', points: 16 },
+            { joueur: 'Calcifer', points: 12 },
+            { joueur: 'Ac3 Cub3', points: 8 },
+            { joueur: 'Kalvace', points: 4 },
+            { joueur: 'Vodkamartini', points: 2 },
+            { joueur: 'Ghost', points: 1 },
+            { joueur: 'Chavi24', points: 16 },
+            { joueur: 'Looping', points: 12 },
+            { joueur: 'Drizz', points: 8 },
+            { joueur: 'Lio', points: 4 },
+            { joueur: 'Nin', points: 2 },
+            { joueur: 'Dopro', points: 1 }
+          ]
+        }
       ];
 
+      const nameAliases = {
+        'mikyb': 'MikyB',
+        'mikyb': 'MikyB',
+        'special k': 'Special K',
+        'special-k': 'Special K',
+        'specialk': 'Special K',
+        'special k ': 'Special K',
+        'specialk ': 'Special K',
+        'nin': 'NIN',
+        'n in': 'NIN',
+        'dje': 'Djé',
+        'dje ': 'Djé',
+        'ac3 cub3': 'Ac3 Cub3',
+        'ac3cub3': 'Ac3 Cub3',
+        'acecub3': 'Ac3 Cub3',
+        'vodkamartini': 'Vodkamartini',
+        'tilititi': 'Tilititi',
+        'harmus': 'Harmus',
+        'niamor': 'Niamor',
+        'el nico': 'El Nico',
+        'helou': 'Helou',
+        'asus2': 'Asus2',
+        'batman': 'Batman',
+        'dopro': 'Dopro',
+        'hvala': 'Hvala',
+        'chavi24': 'Chavi24',
+        'mickey': 'Mickey',
+        'filou': 'Filou',
+        'looper': 'Looping',
+        'looping': 'Looping',
+        'calcifer': 'Calcifer',
+        'ghost': 'Ghost',
+        'jakarr': 'Jackarr',
+        'jackarr': 'Jackarr',
+        'samben': 'Samben',
+        'jardinier': 'Jardinier',
+        'zorglub': 'Zorglub',
+        'kalvace': 'Kalvace',
+        'milady': 'Milady',
+        'drizz': 'Drizz',
+        'lio': 'Lio'
+      };
+
+      function normalizePlayerName(rawName) {
+        const base = String(rawName ?? '')
+          .trim()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, '');
+
+        return nameAliases[base] || rawName.trim();
+      }
+
       const totals = {};
-      resultRows.forEach(({ joueur, points }) => {
-        totals[joueur] = (totals[joueur] || 0) + Number(points);
+      resultSheets.forEach(({ scores }) => {
+        scores.forEach(({ joueur, points }) => {
+          const canonicalName = normalizePlayerName(joueur);
+          totals[canonicalName] = (totals[canonicalName] || 0) + Number(points);
+        });
       });
 
       const ranking = Object.entries(totals)
@@ -545,14 +719,43 @@
       const resultPlaceholder = document.getElementById('resultPlaceholder');
       const resultPreviewShell = document.getElementById('resultPreviewShell');
       const featuredImage = document.getElementById('featuredImage');
+      const featuredPdf = document.getElementById('featuredPdf');
       const modalImage = document.getElementById('modalImage');
+      const modalPdf = document.getElementById('modalPdf');
       const resultTitle = document.getElementById('resultTitle');
       const resultDate = document.getElementById('resultDate');
       const previewModal = document.getElementById('previewModal');
       const previewClose = document.querySelector('.preview-close');
       const resultItems = document.querySelectorAll('.result-item');
 
+      function setPreviewMode(isPdf, src, date) {
+        if (isPdf) {
+          featuredImage.style.display = 'none';
+          featuredPdf.style.display = 'block';
+          featuredPdf.src = src;
+
+          modalImage.style.display = 'none';
+          modalPdf.style.display = 'block';
+          modalPdf.src = src;
+        } else {
+          featuredImage.style.display = 'block';
+          featuredPdf.style.display = 'none';
+          featuredPdf.src = '';
+
+          modalImage.style.display = 'block';
+          modalPdf.style.display = 'none';
+          modalPdf.src = '';
+          featuredImage.src = src;
+          modalImage.src = src;
+        }
+
+        featuredImage.alt = `Fiche ${date}`;
+        modalImage.alt = `Fiche ${date} en grand format`;
+      }
+
       function selectResult(item) {
+        const isPdf = String(item.dataset.src).toLowerCase().endsWith('.pdf');
+
         resultItems.forEach((button) => {
           const isActive = button === item;
           button.classList.toggle('is-active', isActive);
@@ -562,10 +765,7 @@
         const { title, date, src } = item.dataset;
         resultTitle.textContent = title;
         resultDate.textContent = date;
-        featuredImage.src = src;
-        modalImage.src = src;
-        featuredImage.alt = `${title} du ${date}`;
-        modalImage.alt = `${title} du ${date} en grand format`;
+        setPreviewMode(isPdf, src, date);
 
         resultPlaceholder.style.display = 'none';
         resultPreviewShell.classList.add('is-visible');
@@ -576,6 +776,17 @@
       });
 
       document.getElementById('openPreview').addEventListener('click', () => {
+        const activeItem = document.querySelector('.result-item.is-active');
+        const src = activeItem?.dataset.src || './Résultats/23092026.JPG';
+        const date = activeItem?.dataset.date || '23/09/2026';
+        const isPdf = String(src).toLowerCase().endsWith('.pdf');
+
+        if (isPdf) {
+          setPreviewMode(true, src, date);
+        } else {
+          setPreviewMode(false, src, date);
+        }
+
         previewModal.classList.add('is-open');
         previewModal.setAttribute('aria-hidden', 'false');
       });
@@ -599,5 +810,7 @@
         }
       });
     </script>
+
+    <div class="page-badge" aria-label="Page 5">5</div>
   </body>
 </html>

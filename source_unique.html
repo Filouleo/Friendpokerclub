@@ -26,6 +26,37 @@
       color: var(--text);
     }
     a { text-decoration: none; color: inherit; }
+    .page-badge {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 50;
+      min-width: 52px;
+      height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(246, 199, 110, 0.4);
+      background: rgba(16, 18, 24, 0.9);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+    @media (max-width: 640px) {
+      .page-badge {
+        right: 12px;
+        bottom: 12px;
+        min-width: 46px;
+        height: 30px;
+        font-size: 0.66rem;
+        letter-spacing: 0.1em;
+      }
+    }
     .container { width: min(1100px, calc(100% - 32px)); margin: 0 auto; }
     .topbar {
       position: sticky;
@@ -423,6 +454,8 @@
       <div id="footer-date">Export du 2026-09-17</div>
     </div>
   </footer>
+
+  <div class="page-badge" aria-label="Page 8">8</div>
 
   <script>
     const clubData = {
