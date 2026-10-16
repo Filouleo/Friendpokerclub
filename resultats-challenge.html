@@ -462,7 +462,12 @@
           </div>
 
           <div class="result-list">
-            <button class="result-item is-active" type="button" data-title="Challenge de l'Amitié" data-date="23/09/2026" data-src="./Résultats/23092026.JPG" aria-pressed="true">
+            <button class="result-item is-active" type="button" data-title="Challenge de l'Amitié" data-date="07/10/2026" data-src="./Résultats/09102026.png" aria-pressed="true">
+              <span class="result-tag">Challenge</span>
+              <span class="result-name">Challenge de l'Amitié</span>
+              <span class="result-date">07/10/2026</span>
+            </button>
+            <button class="result-item" type="button" data-title="Challenge de l'Amitié" data-date="23/09/2026" data-src="./Résultats/23092026.JPG" aria-pressed="false">
               <span class="result-tag">Challenge</span>
               <span class="result-name">Challenge de l'Amitié</span>
               <span class="result-date">23/09/2026</span>
@@ -484,7 +489,7 @@
           <div class="results-header">
             <p class="results-kicker">Challenge hebdomadaire</p>
             <h1 id="resultTitle">Challenge de l'Amitié</h1>
-            <p id="resultDate">23/09/2026</p>
+            <p id="resultDate">07/10/2026</p>
           </div>
 
           <div class="result-panel">
@@ -498,7 +503,7 @@
 
             <div class="result-preview-shell" id="resultPreviewShell">
               <button class="result-preview-button" id="openPreview" type="button" aria-label="Afficher la fiche en grand format">
-                <img id="featuredImage" src="./Résultats/23092026.JPG" alt="Fiche Challenge de l'Amitié" />
+                <img id="featuredImage" src="./Résultats/09102026.png" alt="Fiche Challenge de l'Amitié" />
                 <iframe id="featuredPdf" title="Fiche PDF Challenge de l'Amitié" src="" style="display:none; width:100%; height:100%; border:0; border-radius: 18px;"></iframe>
               </button>
             </div>
@@ -533,13 +538,43 @@
     <div class="preview-modal" id="previewModal" aria-hidden="true">
       <div class="preview-modal-inner">
         <button class="preview-close" type="button" aria-label="Fermer l'aperçu">×</button>
-        <img id="modalImage" class="preview-modal-image" src="./Résultats/23092026.JPG" alt="Fiche Challenge de l'Amitié en grand format" />
+        <img id="modalImage" class="preview-modal-image" src="./Résultats/09102026.png" alt="Fiche Challenge de l'Amitié en grand format" />
         <iframe id="modalPdf" title="Vue détaillée du PDF" src="" style="display:none; width:100%; height:100%; border:0; border-radius: 18px;"></iframe>
       </div>
     </div>
 
     <script>
       const resultSheets = [
+        {
+          title: "Challenge de l'Amitié",
+          date: '07/10/2026',
+          src: './Résultats/09102026.png',
+          scores: [
+            { joueur: 'Drizz', points: 18 },
+            { joueur: 'Looping', points: 14 },
+            { joueur: 'Vodkamartini', points: 10 },
+            { joueur: 'Zorglub', points: 6 },
+            { joueur: 'Nin', points: 4 },
+            { joueur: 'Filou', points: 3 },
+            { joueur: 'RoyalSprayer', points: 2 },
+            { joueur: 'Hvala', points: 1 },
+            { joueur: 'El Nico', points: 18 },
+            { joueur: 'Jackarr', points: 14 },
+            { joueur: 'Ghost', points: 10 },
+            { joueur: 'Ac3 Cub3', points: 6 },
+            { joueur: 'Jardinier', points: 4 },
+            { joueur: 'Special K', points: 3 },
+            { joueur: 'Mickey', points: 2 },
+            { joueur: 'Chattard', points: 1 },
+            { joueur: 'Samben', points: 17 },
+            { joueur: 'Kalvace', points: 13 },
+            { joueur: 'Lio', points: 9 },
+            { joueur: 'Batman', points: 5 },
+            { joueur: 'Startouf', points: 3 },
+            { joueur: 'Tilititi', points: 2 },
+            { joueur: 'Chavi24', points: 1 }
+          ]
+        },
         {
           title: "Challenge de l'Amitié",
           date: '23/09/2026',
@@ -777,8 +812,8 @@
 
       document.getElementById('openPreview').addEventListener('click', () => {
         const activeItem = document.querySelector('.result-item.is-active');
-        const src = activeItem?.dataset.src || './Résultats/23092026.JPG';
-        const date = activeItem?.dataset.date || '23/09/2026';
+        const src = activeItem?.dataset.src || './Résultats/09102026.png';
+        const date = activeItem?.dataset.date || '07/10/2026';
         const isPdf = String(src).toLowerCase().endsWith('.pdf');
 
         if (isPdf) {
