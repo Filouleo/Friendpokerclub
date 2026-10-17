@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Expletus+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=tdp-20261017-3" />
   </head>
   <body class="subpage">
     <header class="topbar">
@@ -94,12 +94,119 @@
           </div>
         </section>
 
+        <section class="tour-results" id="resultats-tdp" aria-labelledby="tdp-results-title">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Saison 18 · Étape 2</p>
+              <h2 id="tdp-results-title">Résultats &<br /><em>classement général.</em></h2>
+            </div>
+            <p class="section-intro">Retrouvez la fiche du tournoi et le classement général actualisé après l’étape.</p>
+          </div>
+
+          <div class="results-layout tour-results-layout">
+            <aside class="results-sidebar tour-results-sidebar" aria-label="Liste des fiches du Tour des Potes">
+              <div class="sidebar-header">
+                <span class="sidebar-title">Fiches de l’étape</span>
+                <span class="sidebar-badge" aria-hidden="true">TDP</span>
+              </div>
+              <div class="result-list">
+                <button class="result-item tour-result-item is-active" type="button"
+                  data-title="Résultat du tournoi" data-date="Étape 2 · Saison 18"
+                  data-src="./Résultats/TDP/IMG_3159.JPG" aria-pressed="true">
+                  <span class="result-tag">Tournoi</span>
+                  <span class="result-name">Résultat de l’étape</span>
+                  <span class="result-date">Étape 2</span>
+                </button>
+                <button class="result-item tour-result-item" type="button"
+                  data-title="Classement général" data-date="Saison 18 · après l’étape 2"
+                  data-src="./Résultats/TDP/11102026.JPG" aria-pressed="false">
+                  <span class="result-tag">Classement</span>
+                  <span class="result-name">Classement général</span>
+                  <span class="result-date">Après l’étape 2</span>
+                </button>
+              </div>
+            </aside>
+
+            <section class="results-main tour-results-main" aria-live="polite">
+              <div class="results-header">
+                <p class="results-kicker">Tour des Potes</p>
+                <h3 id="tdpResultTitle">Résultat du tournoi</h3>
+                <p id="tdpResultDate">Étape 2 · Saison 18</p>
+              </div>
+              <div class="tour-result-preview">
+                <button class="result-preview-button" id="tdpOpenPreview" type="button" aria-label="Afficher la fiche en grand format">
+                  <img id="tdpFeaturedImage" src="./Résultats/TDP/IMG_3159.JPG" alt="Résultat du tournoi, étape 2 du Tour des Potes" />
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+
         <section class="tour-actions">
-          <a class="button button-primary" href="./Tour des Potes 24_25.pdf" target="_blank" rel="noopener">Voir les résultats 2024/2025 <span aria-hidden="true">↗</span></a>
+          <a class="button button-primary" href="./Tour des Potes 24_25.pdf" target="_blank" rel="noopener">Archives des résultats 2024/2025 <span aria-hidden="true">↗</span></a>
           <a class="text-link" href="./historique.html">Consulter les archives <span aria-hidden="true">→</span></a>
         </section>
       </div>
     </main>
+
+    <div class="tour-results-modal" id="tdpPreviewModal" aria-hidden="true" hidden>
+      <div class="tour-results-modal-content" role="dialog" aria-modal="true" aria-label="Aperçu de la fiche du Tour des Potes">
+        <button class="tour-results-modal-close" id="tdpPreviewClose" type="button" aria-label="Fermer l’aperçu">×</button>
+        <img id="tdpModalImage" src="./Résultats/TDP/IMG_3159.JPG" alt="Résultat du tournoi, étape 2 du Tour des Potes en grand format" />
+      </div>
+    </div>
+
+    <script>
+      const tdpResultItems = document.querySelectorAll('.tour-result-item');
+      const tdpResultTitle = document.getElementById('tdpResultTitle');
+      const tdpResultDate = document.getElementById('tdpResultDate');
+      const tdpFeaturedImage = document.getElementById('tdpFeaturedImage');
+      const tdpModalImage = document.getElementById('tdpModalImage');
+      const tdpPreviewModal = document.getElementById('tdpPreviewModal');
+      const tdpPreviewClose = document.getElementById('tdpPreviewClose');
+
+      function selectTdpResult(item) {
+        tdpResultItems.forEach((button) => {
+          const isActive = button === item;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+
+        const { title, date, src } = item.dataset;
+        tdpResultTitle.textContent = title;
+        tdpResultDate.textContent = date;
+        tdpFeaturedImage.src = src;
+        tdpFeaturedImage.alt = `${title} · Tour des Potes, étape 2`;
+        tdpModalImage.src = src;
+        tdpModalImage.alt = `${title} · Tour des Potes, étape 2 en grand format`;
+      }
+
+      tdpResultItems.forEach((item) => {
+        item.addEventListener('click', () => selectTdpResult(item));
+      });
+
+      document.getElementById('tdpOpenPreview').addEventListener('click', () => {
+        tdpPreviewModal.hidden = false;
+        tdpPreviewModal.classList.add('is-open');
+        tdpPreviewModal.setAttribute('aria-hidden', 'false');
+        tdpPreviewClose.focus();
+      });
+
+      function closeTdpPreview() {
+        tdpPreviewModal.classList.remove('is-open');
+        tdpPreviewModal.setAttribute('aria-hidden', 'true');
+        tdpPreviewModal.hidden = true;
+        document.getElementById('tdpOpenPreview').focus();
+      }
+
+      tdpPreviewClose.addEventListener('click', closeTdpPreview);
+      tdpPreviewModal.addEventListener('click', (event) => {
+        if (event.target === tdpPreviewModal) closeTdpPreview();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && tdpPreviewModal.classList.contains('is-open')) closeTdpPreview();
+      });
+    </script>
 
     <footer class="site-footer">
       <div class="container footer-inner">

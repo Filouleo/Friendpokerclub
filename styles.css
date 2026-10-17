@@ -1367,6 +1367,48 @@ body:not(.rules-page) .hero {
   background: #fff;
 }
 
+body:not(.rules-page) .tdp-home-feature {
+  padding: 28px 20px 34px;
+  background: #fff;
+  text-align: center;
+}
+
+body:not(.rules-page) .tdp-home-feature-content {
+  width: min(100%, 320px);
+  margin: 0 auto;
+}
+
+body:not(.rules-page) .tdp-home-feature .eyebrow {
+  margin-bottom: 8px;
+}
+
+body:not(.rules-page) .tdp-home-feature h2 {
+  margin: 0 0 18px;
+  color: #5835b8;
+  font-family: 'Expletus Sans', sans-serif;
+  font-size: clamp(0.85rem, 4vw, 1.15rem);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+body:not(.rules-page) .tdp-home-feature a {
+  display: block;
+  padding: 9px;
+  overflow: hidden;
+  border: 2px solid #5835b8;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #5835b8 0%, #cc66ff 48%, #e95d9b 100%);
+  box-shadow: 0 0 0 4px rgba(204, 102, 255, 0.24), 0 14px 30px rgba(88, 53, 184, 0.28);
+}
+
+body:not(.rules-page) .tdp-home-feature img {
+  width: 100%;
+  height: auto;
+  border: 2px solid #fff;
+  border-radius: 15px;
+}
+
 body:not(.rules-page) .hero-copy h1,
 body:not(.rules-page) .club-grid h2,
 body:not(.rules-page) .section-header h2 {
@@ -1939,6 +1981,247 @@ body:not(.rules-page) .home-link-card-agenda p {
   align-items: center;
   gap: 18px;
   padding-top: 42px;
+}
+
+.tour-results {
+  padding: 76px 0 0;
+  border-top: 1px solid var(--line-light);
+  scroll-margin-top: 24px;
+}
+
+.tour-results .section-header {
+  margin-bottom: 36px;
+}
+
+.tour-results .section-header h2 em {
+  color: #cc66ff;
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+
+.tour-results-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.tour-results-sidebar {
+  position: static;
+  padding: 20px 16px;
+  border: 1px solid var(--line-light);
+  border-radius: 22px;
+  background: linear-gradient(180deg, #fff6fa 0%, #f8edf3 100%);
+  box-shadow: var(--shadow-light);
+}
+
+.tour-results-sidebar .sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 8px 10px 16px;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.tour-results-sidebar .sidebar-title {
+  color: #b54876;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tour-results-sidebar .sidebar-badge {
+  display: grid;
+  place-items: center;
+  width: auto;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d985aa, #b54876);
+  box-shadow: 0 10px 24px rgba(181, 72, 118, 0.3);
+  color: #fff;
+  font-size: 0.64rem;
+  font-weight: 900;
+}
+
+.tour-results-sidebar .result-list {
+  display: grid;
+  gap: 10px;
+}
+
+.tour-results-sidebar .result-item {
+  width: 100%;
+  padding: 14px 12px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.4);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tour-results-sidebar .result-item:hover,
+.tour-results-sidebar .result-item:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(191, 77, 125, 0.35);
+  box-shadow: 0 10px 18px rgba(191, 77, 125, 0.1);
+}
+
+.tour-results-sidebar .result-item.is-active {
+  border-color: rgba(191, 77, 125, 0.4);
+  background: linear-gradient(135deg, rgba(191, 77, 125, 0.12), rgba(255, 255, 255, 0.7));
+}
+
+.tour-results-sidebar .result-tag {
+  display: inline-block;
+  margin-bottom: 6px;
+  color: #b54876;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tour-results-sidebar .result-name {
+  display: block;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.tour-results-sidebar .result-date {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--muted-ink);
+  font-size: 0.76rem;
+}
+
+.tour-results .results-main {
+  padding: 24px;
+  border: 1px solid var(--line-light);
+  border-radius: 28px;
+  background: linear-gradient(180deg, #fff9fb 0%, #fff4f8 100%);
+  min-height: 0;
+  box-shadow: var(--shadow-light);
+}
+
+.tour-results .results-header {
+  margin-bottom: 18px;
+}
+
+.tour-results .results-kicker {
+  margin: 0 0 8px;
+  color: #b54876;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tour-results .results-header h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.tour-results .results-header > p:last-child {
+  margin: 6px 0 0;
+  color: var(--muted-ink);
+  font-size: 0.85rem;
+}
+
+.tour-result-preview {
+  width: 100%;
+}
+
+.tour-result-preview .result-preview-button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: zoom-in;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 32px rgba(111, 33, 65, 0.12);
+}
+
+.tour-result-preview .result-preview-button img {
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(70, 22, 42, 0.1);
+  border-radius: 16px;
+}
+
+.tour-results-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(21, 14, 18, 0.76);
+}
+
+.tour-results-modal.is-open {
+  display: flex;
+}
+
+.tour-results-modal-content {
+  position: relative;
+  width: min(95vw, 1200px);
+  max-height: 92vh;
+  padding: 12px;
+  overflow: auto;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.tour-results-modal-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.tour-results-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 1;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: #b54876;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+@media (max-width: 980px) {
+  .tour-results-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .tour-results {
+    padding-top: 54px;
+  }
+
+  .tour-results .results-main {
+    padding: 18px;
+  }
+
+  .tour-results-modal {
+    padding: 12px;
+  }
 }
 
 .history-list,
