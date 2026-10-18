@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Expletus+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=tdp-20261018-1" />
+    <link rel="stylesheet" href="styles.css?v=tdp-20261018-3" />
   </head>
   <body class="subpage">
     <header class="topbar">
@@ -82,7 +82,18 @@
           </div>
           <div class="steps-grid">
             <article><span>01</span><h3>Étape 01</h3><p>13 septembre 2026</p></article>
-            <article><span>02</span><h3>Étape 02</h3><p>11 octobre 2026</p></article>
+            <article>
+              <span>02</span><h3>Étape 02</h3><p>11 octobre 2026</p>
+              <button
+                class="step-result-trigger"
+                id="stepTwoResultTrigger"
+                type="button"
+                aria-label="Afficher le classement de l’étape 2"
+                data-title="Classement de l’étape 2"
+                data-date="11 octobre 2026 · Saison 18"
+                data-src="./Résultats/TDP/IMG_3159.JPG"
+              ></button>
+            </article>
             <article><span>03</span><h3>Étape 03</h3><p>15 novembre 2026</p></article>
             <article><span>04</span><h3>Étape 04</h3><p>13 décembre 2026</p></article>
             <article><span>05</span><h3>Étape 05</h3><p>17 janvier 2027</p></article>
@@ -100,26 +111,19 @@
               <p class="eyebrow">Saison 18 · Étape 2</p>
               <h2 id="tdp-results-title">Résultats &<br /><em>classement général.</em></h2>
             </div>
-            <p class="section-intro">Retrouvez la fiche du tournoi et le classement général actualisé après l’étape.</p>
+            <p class="section-intro">Le classement général s’affiche ici. Cliquez sur la case de l’étape 2 pour consulter son classement.</p>
           </div>
 
           <div class="results-layout tour-results-layout">
-            <aside class="results-sidebar tour-results-sidebar" aria-label="Liste des fiches du Tour des Potes">
+            <aside class="results-sidebar tour-results-sidebar" aria-label="Classement général du Tour des Potes">
               <div class="sidebar-header">
-                <span class="sidebar-title">Fiches de l’étape</span>
+                <span class="sidebar-title">Classement général</span>
                 <span class="sidebar-badge" aria-hidden="true">TDP</span>
               </div>
               <div class="result-list">
                 <button class="result-item tour-result-item is-active" type="button"
-                  data-title="Résultat du tournoi" data-date="Étape 2 · Saison 18"
-                  data-src="./Résultats/TDP/IMG_3159.JPG" aria-pressed="true">
-                  <span class="result-tag">Tournoi</span>
-                  <span class="result-name">Résultat de l’étape</span>
-                  <span class="result-date">Étape 2</span>
-                </button>
-                <button class="result-item tour-result-item" type="button"
                   data-title="Classement général" data-date="Saison 18 · après l’étape 2"
-                  data-src="./Résultats/TDP/11102026.JPG" aria-pressed="false">
+                  data-src="./Résultats/TDP/11102026.JPG" aria-pressed="true">
                   <span class="result-tag">Classement</span>
                   <span class="result-name">Classement général</span>
                   <span class="result-date">Après l’étape 2</span>
@@ -130,12 +134,12 @@
             <section class="results-main tour-results-main" aria-live="polite">
               <div class="results-header">
                 <p class="results-kicker">Tour des Potes</p>
-                <h3 id="tdpResultTitle">Résultat du tournoi</h3>
-                <p id="tdpResultDate">Étape 2 · Saison 18</p>
+                <h3 id="tdpResultTitle">Classement général</h3>
+                <p id="tdpResultDate">Saison 18 · après l’étape 2</p>
               </div>
               <div class="tour-result-preview">
                 <button class="result-preview-button" id="tdpOpenPreview" type="button" aria-label="Afficher la fiche en grand format">
-                  <img id="tdpFeaturedImage" src="./Résultats/TDP/IMG_3159.JPG" alt="Résultat du tournoi, étape 2 du Tour des Potes" />
+                  <img id="tdpFeaturedImage" src="./Résultats/TDP/11102026.JPG" alt="Classement général du Tour des Potes après l’étape 2" />
                 </button>
               </div>
             </section>
@@ -152,7 +156,7 @@
     <div class="tour-results-modal" id="tdpPreviewModal" aria-hidden="true" hidden>
       <div class="tour-results-modal-content" role="dialog" aria-modal="true" aria-label="Aperçu de la fiche du Tour des Potes">
         <button class="tour-results-modal-close" id="tdpPreviewClose" type="button" aria-label="Fermer l’aperçu">×</button>
-        <img id="tdpModalImage" src="./Résultats/TDP/IMG_3159.JPG" alt="Résultat du tournoi, étape 2 du Tour des Potes en grand format" />
+        <img id="tdpModalImage" src="./Résultats/TDP/11102026.JPG" alt="Classement général du Tour des Potes après l’étape 2 en grand format" />
       </div>
     </div>
 
@@ -164,15 +168,15 @@
       const tdpModalImage = document.getElementById('tdpModalImage');
       const tdpPreviewModal = document.getElementById('tdpPreviewModal');
       const tdpPreviewClose = document.getElementById('tdpPreviewClose');
+      const stepTwoResultTrigger = document.getElementById('stepTwoResultTrigger');
 
-      function selectTdpResult(item) {
+      function showTdpResult({ title, date, src }, selectedItem = null) {
         tdpResultItems.forEach((button) => {
-          const isActive = button === item;
+          const isActive = button === selectedItem;
           button.classList.toggle('is-active', isActive);
           button.setAttribute('aria-pressed', String(isActive));
         });
 
-        const { title, date, src } = item.dataset;
         tdpResultTitle.textContent = title;
         tdpResultDate.textContent = date;
         tdpFeaturedImage.src = src;
@@ -182,7 +186,12 @@
       }
 
       tdpResultItems.forEach((item) => {
-        item.addEventListener('click', () => selectTdpResult(item));
+        item.addEventListener('click', () => showTdpResult(item.dataset, item));
+      });
+
+      stepTwoResultTrigger.addEventListener('click', () => {
+        showTdpResult(stepTwoResultTrigger.dataset);
+        document.getElementById('resultats-tdp').scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
 
       document.getElementById('tdpOpenPreview').addEventListener('click', () => {
