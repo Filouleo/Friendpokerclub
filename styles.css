@@ -1396,7 +1396,7 @@ body:not(.rules-page) .home-hero .hero-copy {
   border-radius: 24px;
   background:
     linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)),
-    url('./P%C3%A9pito.JPG') center 38% / cover no-repeat;
+    url('./P%C3%A9pito/P%C3%A9pito.JPG') center 38% / cover no-repeat;
   box-shadow: 0 0 0 4px rgba(204, 102, 255, 0.24), 0 14px 30px rgba(88, 53, 184, 0.2);
 }
 
@@ -1421,7 +1421,7 @@ body:not(.rules-page) .hero-photo-toggle {
 
 body:not(.rules-page) .home-hero .hero-copy:has(a:focus-visible),
 body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed {
-  background: url('./P%C3%A9pito.JPG') center 38% / cover no-repeat;
+  background: url('./P%C3%A9pito/P%C3%A9pito.JPG') center 38% / cover no-repeat;
 }
 
 body:not(.rules-page) .home-hero .hero-copy:has(a:focus-visible) > :not(.hero-photo-toggle),
@@ -1444,7 +1444,7 @@ body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed > :not(.hero-photo
 
 @media (hover: hover) {
   body:not(.rules-page) .home-hero .hero-copy:hover {
-    background: url('./P%C3%A9pito.JPG') center 38% / cover no-repeat;
+    background: url('./P%C3%A9pito/P%C3%A9pito.JPG') center 38% / cover no-repeat;
   }
 
   body:not(.rules-page) .home-hero .hero-copy:hover > * {
