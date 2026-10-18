@@ -1385,15 +1385,44 @@ body:not(.rules-page) .home-hero-grid > .hero-note {
 }
 
 body:not(.rules-page) .home-hero .hero-copy {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+  border: 2px solid #5835b8;
+  border-radius: 24px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)),
+    url('./P%C3%A9pito.JPG') center 38% / cover no-repeat;
+  box-shadow: 0 0 0 4px rgba(204, 102, 255, 0.24), 0 14px 30px rgba(88, 53, 184, 0.2);
+}
+
+body:not(.rules-page) .home-hero .hero-copy > * {
+  transition: opacity 0.2s ease;
+}
+
+body:not(.rules-page) .home-hero .hero-copy:hover,
+body:not(.rules-page) .home-hero .hero-copy:has(:focus-visible) {
+  background: url('./P%C3%A9pito.JPG') center 38% / cover no-repeat;
+}
+
+body:not(.rules-page) .home-hero .hero-copy:hover > *,
+body:not(.rules-page) .home-hero .hero-copy:has(:focus-visible) > * {
+  opacity: 0;
 }
 
 body:not(.rules-page) .home-hero .hero-copy h1 {
+  color: #222;
   font-size: clamp(2.1rem, 3.2vw, 3.2rem);
   line-height: 1;
   letter-spacing: -0.07em;
+}
+
+body:not(.rules-page) .home-hero .hero-copy h1 em {
+  color: #a53dcc;
 }
 
 body:not(.rules-page) .home-hero .hero-copy .lead {
@@ -1545,6 +1574,7 @@ body:not(.rules-page) .hero-marquee i {
 
   body:not(.rules-page) .home-hero .hero-copy {
     display: block;
+    padding: 24px;
   }
 
   body:not(.rules-page) .tdp-home-feature-content {
