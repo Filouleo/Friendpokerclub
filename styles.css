@@ -2040,7 +2040,7 @@ body:not(.rules-page) .home-link-card-agenda p {
   font-size: 0.76rem;
 }
 
-.steps-grid article:nth-child(-n + 3) p {
+.steps-grid p {
   font-size: 0.92rem;
   font-weight: 700;
 }
