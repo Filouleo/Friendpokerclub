@@ -220,11 +220,18 @@ function renderTimeline(data) {
 
 function initHeroPhotoTouch() {
   const heroCopy = document.querySelector('.home-hero .hero-copy');
-  if (!heroCopy || !window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+  const toggleButton = heroCopy?.querySelector('.hero-photo-toggle');
+  if (!heroCopy || !toggleButton || !window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
 
+  const togglePhoto = () => {
+    const isRevealed = heroCopy.classList.toggle('is-photo-revealed');
+    toggleButton.textContent = isRevealed ? 'Revenir au texte' : 'Voir la photo';
+  };
+
+  toggleButton.addEventListener('click', togglePhoto);
   heroCopy.addEventListener('click', (event) => {
-    if (event.target instanceof Element && event.target.closest('a')) return;
-    heroCopy.classList.toggle('is-photo-revealed');
+    if (event.target instanceof Element && event.target.closest('a, button')) return;
+    togglePhoto();
   });
 }
 

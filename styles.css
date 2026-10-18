@@ -1404,18 +1404,42 @@ body:not(.rules-page) .home-hero .hero-copy > * {
   transition: opacity 0.2s ease;
 }
 
-body:not(.rules-page) .home-hero .hero-copy:has(:focus-visible),
+body:not(.rules-page) .hero-photo-toggle {
+  display: none;
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 2;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  background: rgba(20, 12, 42, 0.8);
+  color: #fff;
+  font: 600 0.85rem/1.2 'Manrope', sans-serif;
+  cursor: pointer;
+}
+
+body:not(.rules-page) .home-hero .hero-copy:has(a:focus-visible),
 body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed {
   background: url('./P%C3%A9pito.JPG') center 38% / cover no-repeat;
 }
 
-body:not(.rules-page) .home-hero .hero-copy:has(:focus-visible) > *,
-body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed > * {
+body:not(.rules-page) .home-hero .hero-copy:has(a:focus-visible) > :not(.hero-photo-toggle),
+body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed > :not(.hero-photo-toggle) {
   opacity: 0;
 }
 
-body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed > * {
+body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed > :not(.hero-photo-toggle) {
   pointer-events: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  body:not(.rules-page) .hero-photo-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+  }
 }
 
 @media (hover: hover) {
