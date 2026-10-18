@@ -2587,14 +2587,17 @@ body:not(.rules-page) .text-link {
 
 @media (max-width: 700px) {
   body:not(.rules-page) .site-banner {
-    height: 260px;
+    height: clamp(150px, 52vw, 230px);
   }
 
   body:not(.rules-page) .site-banner-slide img {
-    object-position: 58% center;
+    object-fit: contain;
+    object-position: center;
+    background: #171922;
   }
 
   body:not(.rules-page) .site-banner-slide:first-child img {
+    object-fit: contain;
     padding: 0;
   }
 
