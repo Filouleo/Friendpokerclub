@@ -1227,9 +1227,41 @@ body {
 
 /* Public-site visual language */
 body:not(.rules-page) {
+  position: relative;
+  isolation: isolate;
   font-family: 'Expletus Sans', sans-serif;
-  background: #fff;
+  background: transparent;
   color: #222;
+}
+
+.rules-page {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+
+body:not(.rules-page)::before,
+.rules-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.84)),
+    url('./P%C3%A9pito/papier%20peint%20chien%20friends.png') center / cover no-repeat;
+  pointer-events: none;
+}
+
+.rules-page::before {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.84)),
+    url('./P%C3%A9pito/papier%20peint%20chien%20friends.png?v=site-wallpaper-20261018-2000') center / cover no-repeat;
+}
+
+body:not(.rules-page)::before {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.84)),
+    url('./P%C3%A9pito/papier%20peint%20chien%20friends.png?v=site-wallpaper-20261018-2000') center / cover no-repeat;
 }
 
 body:not(.rules-page) .topbar {
@@ -1402,7 +1434,7 @@ body:not(.rules-page) .site-banner-dots button.is-active {
 
 body:not(.rules-page) .hero {
   padding-top: 34px;
-  background: #fff;
+  background: transparent;
 }
 
 body:not(.rules-page) .home-hero {
@@ -1679,7 +1711,7 @@ body:not(.rules-page) .hero-marquee i {
 
 body:not(.rules-page) .home-links-section {
   padding: 94px 0 20px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 body:not(.rules-page) .home-links-section .section-header {
@@ -1962,6 +1994,49 @@ body:not(.rules-page) .home-link-card-agenda p {
 
 .subpage-main {
   padding: 42px 0 100px;
+}
+
+.agenda-view-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.agenda-view-main {
+  flex: 1;
+  padding: 28px 0 48px;
+}
+
+.agenda-view-main .back-link {
+  margin-bottom: 20px;
+}
+
+.agenda-view-figure {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 14px;
+  border: 1px solid rgba(88, 53, 184, 0.16);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 16px 44px rgba(45, 28, 89, 0.14);
+}
+
+.agenda-view-figure img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 650px);
+  max-height: calc(100svh - 180px);
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.agenda-view-figure figcaption {
+  padding-top: 10px;
+  color: #5835b8;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 .back-link {

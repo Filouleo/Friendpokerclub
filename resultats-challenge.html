@@ -29,10 +29,23 @@
       html { scroll-behavior: smooth; }
 
       body {
+        position: relative;
+        isolation: isolate;
         margin: 0;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(180deg, #fffafc 0%, #fdf0f7 100%);
+        background: transparent;
         color: var(--ink);
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(rgba(255, 250, 252, 0.84), rgba(255, 250, 252, 0.84)),
+          url('./P%C3%A9pito/papier%20peint%20chien%20friends.png?v=site-wallpaper-20261018-2000') center / cover no-repeat;
+        pointer-events: none;
       }
 
       img {
