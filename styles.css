@@ -1404,14 +1404,28 @@ body:not(.rules-page) .home-hero .hero-copy > * {
   transition: opacity 0.2s ease;
 }
 
-body:not(.rules-page) .home-hero .hero-copy:hover,
-body:not(.rules-page) .home-hero .hero-copy:has(:focus-visible) {
+body:not(.rules-page) .home-hero .hero-copy:has(:focus-visible),
+body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed {
   background: url('./P%C3%A9pito.JPG') center 38% / cover no-repeat;
 }
 
-body:not(.rules-page) .home-hero .hero-copy:hover > *,
-body:not(.rules-page) .home-hero .hero-copy:has(:focus-visible) > * {
+body:not(.rules-page) .home-hero .hero-copy:has(:focus-visible) > *,
+body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed > * {
   opacity: 0;
+}
+
+body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed > * {
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  body:not(.rules-page) .home-hero .hero-copy:hover {
+    background: url('./P%C3%A9pito.JPG') center 38% / cover no-repeat;
+  }
+
+  body:not(.rules-page) .home-hero .hero-copy:hover > * {
+    opacity: 0;
+  }
 }
 
 body:not(.rules-page) .home-hero .hero-copy h1 {

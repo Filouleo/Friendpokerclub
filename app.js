@@ -218,6 +218,16 @@ function renderTimeline(data) {
     .join('');
 }
 
+function initHeroPhotoTouch() {
+  const heroCopy = document.querySelector('.home-hero .hero-copy');
+  if (!heroCopy || !window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+  heroCopy.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('a')) return;
+    heroCopy.classList.toggle('is-photo-revealed');
+  });
+}
+
 function initBannerCarousel() {
   const carousel = document.querySelector('[data-carousel]');
   if (!carousel) return;
@@ -272,6 +282,7 @@ let data = null;
 (async () => {
   try {
     initBannerCarousel();
+    initHeroPhotoTouch();
     data = await loadData();
     document.title = data.club.club_name || 'Friends Poker Club';
     document.querySelector('.brand-name').textContent = data.club.club_name || 'Friends Poker Club';
