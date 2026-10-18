@@ -1237,7 +1237,7 @@ body:not(.rules-page) .button-primary {
 body:not(.rules-page) .site-banner {
   position: relative;
   width: 100%;
-  height: clamp(230px, 34vw, 460px);
+  height: clamp(190px, 27vw, 360px);
   overflow: hidden;
   background: #222;
 }
