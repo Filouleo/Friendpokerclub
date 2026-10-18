@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Challenge de l'Amitié | Friends Poker Club</title>
+    <title>Résultats Sit &amp; Go et Cash | Friends Poker Club</title>
     <link rel="icon" type="image/png" sizes="128x128" href="./favicon.png?v=20261018" />
     <style>
       :root {
@@ -103,65 +103,65 @@
         font-weight: 800;
       }
 
-      .results-layout {
-        display: grid;
-        grid-template-columns: 340px minmax(0, 1fr);
-        gap: 24px;
-        align-items: start;
-      }
-
-      .results-sidebar {
-        background: linear-gradient(180deg, #fff6fa 0%, #f8edf3 100%);
+      .results-group {
+        margin: 0 0 24px;
+        padding: 22px;
+        background: linear-gradient(180deg, #fff9fb 0%, #fff4f8 100%);
         border: 1px solid var(--line);
-        border-radius: 22px;
-        padding: 20px 16px;
+        border-radius: 24px;
         box-shadow: var(--shadow);
-        position: sticky;
-        top: 18px;
       }
 
-      .sidebar-header {
+      .results-group-header {
         display: flex;
-        align-items: center;
+        align-items: end;
         justify-content: space-between;
-        gap: 12px;
-        padding: 8px 10px 16px;
-        border-bottom: 1px solid var(--line);
-        margin-bottom: 12px;
+        gap: 16px;
+        margin-bottom: 16px;
       }
 
-      .sidebar-title {
-        font-size: 0.76rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+      .results-group-header h1,
+      .results-group-header h2 {
+        margin: 0;
+        color: var(--ink);
+        font-size: clamp(1.6rem, 3vw, 2.3rem);
+        letter-spacing: -0.06em;
+      }
+
+      .results-group-header p {
+        margin: 5px 0 0;
+        color: var(--ink-soft);
+        font-size: 0.9rem;
+      }
+
+      .results-count {
+        flex: none;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--rose-100);
+        color: var(--rose-700);
+        font-size: 0.75rem;
         font-weight: 800;
-        color: var(--rose-600);
       }
 
-      .sidebar-badge {
-        width: 34px;
-        height: 34px;
+      .result-grid {
         display: grid;
-        place-items: center;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--rose-400), var(--rose-600));
-        color: #fff;
-        font-weight: 900;
-        box-shadow: 0 10px 24px rgba(181, 72, 118, 0.3);
-      }
-
-      .result-list {
-        display: grid;
-        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 9px;
       }
 
       .result-item {
-        width: 100%;
+        min-width: 0;
+        min-height: 76px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        padding: 10px 12px;
         text-align: left;
-        border: 1px solid transparent;
-        background: rgba(255,255,255,0.4);
-        border-radius: 16px;
-        padding: 14px 12px;
+        border: 1px solid rgba(132, 56, 85, 0.16);
+        border-radius: 13px;
+        background: rgba(255,255,255,0.72);
         cursor: pointer;
         transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
       }
@@ -169,37 +169,38 @@
       .result-item:hover,
       .result-item:focus-visible {
         transform: translateY(-1px);
-        border-color: rgba(191, 77, 125, 0.35);
-        box-shadow: 0 10px 18px rgba(191, 77, 125, 0.1);
+        border-color: rgba(191, 77, 125, 0.45);
+        box-shadow: 0 8px 16px rgba(191, 77, 125, 0.1);
       }
 
       .result-item.is-active {
-        background: linear-gradient(135deg, rgba(191, 77, 125, 0.12), rgba(255, 255, 255, 0.7));
-        border-color: rgba(191, 77, 125, 0.4);
+        background: linear-gradient(135deg, rgba(191, 77, 125, 0.14), rgba(255, 255, 255, 0.9));
+        border-color: rgba(191, 77, 125, 0.55);
+        box-shadow: inset 0 0 0 1px rgba(191, 77, 125, 0.12);
       }
 
-      .result-tag {
-        display: inline-block;
-        margin-bottom: 6px;
-        font-size: 0.66rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
+      .result-item-label {
         color: var(--rose-600);
+        font-size: 0.65rem;
         font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
-      .result-name {
-        display: block;
-        font-size: 1rem;
-        font-weight: 800;
+      .result-item-date {
         color: var(--ink);
+        font-size: 0.88rem;
+        font-weight: 800;
       }
 
-      .result-date {
-        display: inline-block;
-        margin-top: 8px;
+      .results-empty {
+        grid-column: 1 / -1;
+        margin: 0;
+        padding: 14px;
+        border: 1px dashed var(--line);
+        border-radius: 13px;
         color: var(--ink-soft);
-        font-size: 0.76rem;
+        font-size: 0.9rem;
       }
 
       .results-main {
@@ -227,6 +228,13 @@
       .results-header h1 {
         margin: 0;
         font-size: clamp(2.1rem, 4vw, 3.4rem);
+        letter-spacing: -0.06em;
+        color: var(--ink);
+      }
+
+      .results-header h2 {
+        margin: 0;
+        font-size: clamp(1.8rem, 3vw, 2.7rem);
         letter-spacing: -0.06em;
         color: var(--ink);
       }
@@ -438,13 +446,17 @@
         background: linear-gradient(135deg, rgba(249, 223, 233, 0.8), rgba(218, 136, 174, 0.32));
       }
 
-      @media (max-width: 980px) {
-        .results-layout {
-          grid-template-columns: 1fr;
+      @media (max-width: 640px) {
+        .results-group {
+          padding: 16px;
         }
 
-        .results-sidebar {
-          position: static;
+        .results-group-header {
+          align-items: start;
+        }
+
+        .result-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
     </style>
@@ -455,74 +467,62 @@
         <a class="back-link" href="./index.html">← Accueil</a>
       </div>
 
-      <div class="results-layout">
-        <aside class="results-sidebar" aria-label="Liste des fiches de résultats">
-          <div class="sidebar-header">
-            <span class="sidebar-title">Résultats</span>
-            <span class="sidebar-badge">F</span>
+      <section class="results-group" aria-labelledby="sit-results-title">
+        <div class="results-group-header">
+          <div>
+            <p class="results-kicker">Résultats du mercredi</p>
+            <h1 id="sit-results-title">Sit &amp; Go</h1>
+            <p>Choisissez une date pour consulter la fiche.</p>
           </div>
+          <span class="results-count" id="sit-results-count"></span>
+        </div>
+        <div class="result-grid" id="sit-results-list" aria-label="Résultats Sit &amp; Go"></div>
+      </section>
 
-          <div class="result-list">
-            <button class="result-item is-active" type="button" data-title="Challenge de l'Amitié" data-date="14/10/2026" data-src="./Résultats/14102026.JPG" aria-pressed="true">
-              <span class="result-tag">Challenge</span>
-              <span class="result-name">Challenge de l'Amitié</span>
-              <span class="result-date">14/10/2026</span>
-            </button>
-            <button class="result-item" type="button" data-title="Challenge de l'Amitié" data-date="07/10/2026" data-src="./Résultats/09102026.png" aria-pressed="false">
-              <span class="result-tag">Challenge</span>
-              <span class="result-name">Challenge de l'Amitié</span>
-              <span class="result-date">07/10/2026</span>
-            </button>
-            <button class="result-item" type="button" data-title="Challenge de l'Amitié" data-date="23/09/2026" data-src="./Résultats/23092026.JPG" aria-pressed="false">
-              <span class="result-tag">Challenge</span>
-              <span class="result-name">Challenge de l'Amitié</span>
-              <span class="result-date">23/09/2026</span>
-            </button>
-            <button class="result-item" type="button" data-title="Challenge de l'Amitié" data-date="16/09/2026" data-src="./Résultats/1609 (1).png" aria-pressed="false">
-              <span class="result-tag">Challenge</span>
-              <span class="result-name">Challenge de l'Amitié</span>
-              <span class="result-date">16/09/2026</span>
-            </button>
-            <button class="result-item" type="button" data-title="Challenge de l'Amitié" data-date="09/09/2026" data-src="./Résultats/0909.png" aria-pressed="false">
-              <span class="result-tag">Challenge</span>
-              <span class="result-name">Challenge de l'Amitié</span>
-              <span class="result-date">09/09/2026</span>
-            </button>
+      <section class="results-group" aria-labelledby="cash-results-title">
+        <div class="results-group-header">
+          <div>
+            <p class="results-kicker">Résultats du mercredi</p>
+            <h2 id="cash-results-title">Cash Game</h2>
+            <p>Les résultats Cash sont regroupés dans cet espace.</p>
           </div>
-        </aside>
+          <span class="results-count" id="cash-results-count"></span>
+        </div>
+        <div class="result-grid" id="cash-results-list" aria-label="Résultats Cash Game"></div>
+      </section>
 
-        <section class="results-main" aria-live="polite">
-          <div class="results-header">
-            <p class="results-kicker">Challenge hebdomadaire</p>
-            <h1 id="resultTitle">Challenge de l'Amitié</h1>
-            <p id="resultDate">14/10/2026</p>
-          </div>
+      <section class="results-main" aria-live="polite" aria-labelledby="resultTitle">
+        <div class="results-header">
+          <p class="results-kicker" id="resultKicker">Résultat · Sit &amp; Go</p>
+          <h2 id="resultTitle">Sit &amp; Go</h2>
+          <p id="resultDate">14/10/2026</p>
+        </div>
 
-          <div class="result-panel">
-            <div class="result-panel-empty" id="resultPlaceholder">
-              <div>
-                <div class="placeholder-mark">F</div>
-                <h2>Choisissez une fiche</h2>
-                <p>Cliquez sur une fiche dans la liste pour afficher le résultat et le détail associé.</p>
-              </div>
-            </div>
-
-            <div class="result-preview-shell" id="resultPreviewShell">
-              <button class="result-preview-button" id="openPreview" type="button" aria-label="Afficher la fiche en grand format">
-                <img id="featuredImage" src="./Résultats/14102026.JPG" alt="Fiche Challenge de l'Amitié" />
-                <iframe id="featuredPdf" title="Fiche PDF Challenge de l'Amitié" src="" style="display:none; width:100%; height:100%; border:0; border-radius: 18px;"></iframe>
-              </button>
+        <div class="result-panel">
+          <div class="result-panel-empty" id="resultPlaceholder">
+            <div>
+              <div class="placeholder-mark">F</div>
+              <h2>Choisissez une fiche</h2>
+              <p>Cliquez sur une date dans l’une des deux sections pour afficher le résultat.</p>
             </div>
           </div>
-        </section>
-      </div>
+
+          <div class="result-preview-shell" id="resultPreviewShell">
+            <button class="result-preview-button" id="openPreview" type="button" aria-label="Afficher la fiche en grand format">
+              <img id="featuredImage" src="./Résultats/14102026.JPG" alt="Fiche Sit &amp; Go" />
+            </button>
+            <iframe id="featuredPdf" title="Fiche PDF de résultat" src="" style="display:none; width:100%; min-height:70vh; border:0; border-radius: 18px;"></iframe>
+            <a id="openPdf" class="back-link" href="#" target="_blank" rel="noopener" style="display:none; margin-top:12px;">Ouvrir le PDF dans un nouvel onglet ↗</a>
+          </div>
+        </div>
+      </section>
 
       <section class="ranking-section" aria-labelledby="general-ranking-title">
         <div class="ranking-banner">
           <div class="brand-badge" aria-hidden="true">F</div>
           <div>
             <div class="banner-kicker">Friends Poker Club</div>
-            <h2 id="general-ranking-title">Classement général</h2>
+            <h2 id="general-ranking-title">Classement général Sit &amp; Go</h2>
           </div>
         </div>
 
@@ -544,7 +544,7 @@
     <div class="preview-modal" id="previewModal" aria-hidden="true">
       <div class="preview-modal-inner">
         <button class="preview-close" type="button" aria-label="Fermer l'aperçu">×</button>
-        <img id="modalImage" class="preview-modal-image" src="./Résultats/14102026.JPG" alt="Fiche Challenge de l'Amitié en grand format" />
+        <img id="modalImage" class="preview-modal-image" src="./Résultats/14102026.JPG" alt="Fiche Sit &amp; Go en grand format" />
         <iframe id="modalPdf" title="Vue détaillée du PDF" src="" style="display:none; width:100%; height:100%; border:0; border-radius: 18px;"></iframe>
       </div>
     </div>
@@ -552,7 +552,7 @@
     <script>
       const resultSheets = [
         {
-          title: "Challenge de l'Amitié",
+          title: "Sit & Go",
           date: '14/10/2026',
           src: './Résultats/14102026.JPG',
           scores: [
@@ -581,7 +581,7 @@
           ]
         },
         {
-          title: "Challenge de l'Amitié",
+          title: "Sit & Go",
           date: '07/10/2026',
           src: './Résultats/09102026.png',
           scores: [
@@ -611,7 +611,7 @@
           ]
         },
         {
-          title: "Challenge de l'Amitié",
+          title: "Sit & Go",
           date: '23/09/2026',
           src: './Résultats/23092026.JPG',
           scores: [
@@ -643,7 +643,7 @@
           ]
         },
         {
-          title: "Challenge de l'Amitié",
+          title: "Sit & Go",
           date: '16/09/2026',
           src: './Résultats/1609 (1).png',
           scores: [
@@ -676,7 +676,7 @@
           ]
         },
         {
-          title: "Challenge de l'Amitié",
+          title: "Sit & Go",
           date: '09/09/2026',
           src: './Résultats/0909.png',
           scores: [
@@ -706,6 +706,20 @@
             { joueur: 'Nin', points: 2 },
             { joueur: 'Dopro', points: 1 }
           ]
+        },
+        {
+          title: 'Sit & Go',
+          date: 'Saison 2024/2025',
+          src: './Sit%2024_25.pdf',
+          scores: []
+        }
+      ];
+
+      const cashSheets = [
+        {
+          title: 'Cash Game',
+          date: 'Saison 2024/2025',
+          src: './Membres/Cash%2024_25.pdf'
         }
       ];
 
@@ -794,8 +808,47 @@
       const modalPdf = document.getElementById('modalPdf');
       const resultTitle = document.getElementById('resultTitle');
       const resultDate = document.getElementById('resultDate');
+      const resultKicker = document.getElementById('resultKicker');
+      const previewButton = document.getElementById('openPreview');
+      const openPdf = document.getElementById('openPdf');
       const previewModal = document.getElementById('previewModal');
       const previewClose = document.querySelector('.preview-close');
+
+      function renderResultItems(containerId, countId, sheets, game) {
+        const container = document.getElementById(containerId);
+        const count = document.getElementById(countId);
+        count.textContent = `${sheets.length} fiche${sheets.length === 1 ? '' : 's'}`;
+
+        if (sheets.length === 0) {
+          container.innerHTML = '<p class="results-empty">Aucun résultat disponible pour le moment.</p>';
+          return;
+        }
+
+        sheets.forEach((sheet) => {
+          const item = document.createElement('button');
+          item.className = 'result-item';
+          item.type = 'button';
+          item.dataset.title = sheet.title;
+          item.dataset.date = sheet.date;
+          item.dataset.src = sheet.src;
+          item.dataset.game = game;
+          item.setAttribute('aria-pressed', 'false');
+          item.setAttribute('aria-label', `${game} — ${sheet.date}`);
+
+          const label = document.createElement('span');
+          label.className = 'result-item-label';
+          label.textContent = game;
+
+          const date = document.createElement('span');
+          date.className = 'result-item-date';
+          date.textContent = sheet.date;
+          item.append(label, date);
+          container.append(item);
+        });
+      }
+
+      renderResultItems('sit-results-list', 'sit-results-count', resultSheets, 'Sit & Go');
+      renderResultItems('cash-results-list', 'cash-results-count', cashSheets, 'Cash Game');
       const resultItems = document.querySelectorAll('.result-item');
 
       function setPreviewMode(isPdf, src, date) {
@@ -803,15 +856,15 @@
           featuredImage.style.display = 'none';
           featuredPdf.style.display = 'block';
           featuredPdf.src = src;
-
-          modalImage.style.display = 'none';
-          modalPdf.style.display = 'block';
-          modalPdf.src = src;
+          previewButton.style.display = 'none';
+          openPdf.href = src;
+          openPdf.style.display = 'inline-flex';
         } else {
           featuredImage.style.display = 'block';
           featuredPdf.style.display = 'none';
           featuredPdf.src = '';
-
+          previewButton.style.display = 'block';
+          openPdf.style.display = 'none';
           modalImage.style.display = 'block';
           modalPdf.style.display = 'none';
           modalPdf.src = '';
@@ -835,6 +888,7 @@
         const { title, date, src } = item.dataset;
         resultTitle.textContent = title;
         resultDate.textContent = date;
+        resultKicker.textContent = `Résultat · ${item.dataset.game}`;
         setPreviewMode(isPdf, src, date);
 
         resultPlaceholder.style.display = 'none';
@@ -845,22 +899,18 @@
         item.addEventListener('click', () => selectResult(item));
       });
 
-      document.getElementById('openPreview').addEventListener('click', () => {
+      previewButton.addEventListener('click', () => {
         const activeItem = document.querySelector('.result-item.is-active');
-        const src = activeItem?.dataset.src || './Résultats/14102026.JPG';
-        const date = activeItem?.dataset.date || '14/10/2026';
-        const isPdf = String(src).toLowerCase().endsWith('.pdf');
-
-        if (isPdf) {
-          setPreviewMode(true, src, date);
-        } else {
-          setPreviewMode(false, src, date);
-        }
+        const src = activeItem?.dataset.src;
+        if (!src || src.toLowerCase().endsWith('.pdf')) return;
+        modalImage.src = src;
+        modalImage.alt = `Fiche ${activeItem.dataset.game} du ${activeItem.dataset.date} en grand format`;
 
         previewModal.classList.add('is-open');
         previewModal.setAttribute('aria-hidden', 'false');
       });
 
+      selectResult(document.querySelector('#sit-results-list .result-item'));
       previewClose.addEventListener('click', () => {
         previewModal.classList.remove('is-open');
         previewModal.setAttribute('aria-hidden', 'true');
