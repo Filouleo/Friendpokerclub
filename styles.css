@@ -1551,7 +1551,7 @@ body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed > :not(.hero-photo
 
 body:not(.rules-page) .home-hero .hero-copy h1 {
   color: #222;
-  font-size: clamp(2.1rem, 3.1vw, 3.1rem);
+  font-size: clamp(2rem, 2.9vw, 2.9rem);
   line-height: 1;
   letter-spacing: -0.07em;
 }
