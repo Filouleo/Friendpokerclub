@@ -636,6 +636,8 @@
                 <th>Cl.</th>
                 <th>Joueur</th>
                 <th>Points</th>
+                <th>Kills</th>
+                <th>Participations</th>
               </tr>
             </thead>
             <tbody id="ranking-body"></tbody>
@@ -681,6 +683,11 @@
             { joueur: 'Lio', points: 3 },
             { joueur: 'Tilititi', points: 2 },
             { joueur: 'El Nico', points: 1 }
+          ],
+          kills: [
+            'Looping', 'Looping', 'Looping', 'Jardinier', 'Looping', 'Special K',
+            'Nin', 'Nin', 'Nin', 'Nin', 'MikyB', 'Nin', 'MikyB',
+            'Jackarr', 'Jackarr', 'Jackarr', 'Jackarr', 'Lio', 'Batman'
           ]
         },
         {
@@ -711,6 +718,11 @@
             { joueur: 'Startouf', points: 3 },
             { joueur: 'Tilititi', points: 2 },
             { joueur: 'Chavi24', points: 1 }
+          ],
+          kills: [
+            'Drizz', 'Drizz', 'Drizz', 'Drizz', 'Zorglub', 'Drizz', 'Looping',
+            'Ghost', 'Jackarr', 'Ghost', 'El Nico', 'Jackarr',
+            'Samben', 'Samben', 'Samben', 'Samben', 'Samben', 'Kalvace'
           ]
         },
         {
@@ -743,6 +755,11 @@
             { joueur: 'Lio', points: 3 },
             { joueur: 'Vodkamartini', points: 2 },
             { joueur: 'Ac3 Cub3', points: 1 }
+          ],
+          kills: [
+            'Special K', 'Special K', 'Special K', 'Special K', 'Special K', 'Djé',
+            'Hvala', 'Hvala', 'Mikyb', 'Mikyb', 'Mikyb', 'Mikyb', 'Tilititi',
+            'Startouf', 'Startouf', 'Nin', 'Nin', 'Nin', 'Chavi24', 'Lio'
           ]
         },
         {
@@ -776,6 +793,12 @@
             { joueur: 'Ghost', points: 3 },
             { joueur: 'Vodkamartini', points: 2 },
             { joueur: 'Zorglub', points: 1 }
+          ],
+          kills: [
+            'Special K', 'Special K', 'Drizz', 'Drizz', 'Drizz', 'Drizz', 'Djé',
+            'Djé', 'Djé', 'Djé', 'Djé',
+            'Mikyb', 'Mikyb', 'Lio', 'Samben', 'Mikyb',
+            'Nin', 'Nin', 'Hvala', 'Looping', 'Ac3 Cub3', 'Ac3 Cub3'
           ]
         },
         {
@@ -808,6 +831,12 @@
             { joueur: 'Lio', points: 4 },
             { joueur: 'Nin', points: 2 },
             { joueur: 'Dopro', points: 1 }
+          ],
+          kills: [
+            'Chattard', 'MikyB', 'Jardinier', 'Mickey',
+            'Hvala', 'Hvala', 'Hvala', 'Zorglub', 'Hvala',
+            'El Nico', 'El Nico', 'Ac3 Cub3', 'Kalvace',
+            'Chavi24', 'Chavi24', 'Looping', 'Drizz', 'Lio'
           ]
         },
       ];
@@ -878,12 +907,21 @@
       resultSheets.forEach(({ scores }) => {
         scores.forEach(({ joueur, points }) => {
           const canonicalName = normalizePlayerName(joueur);
-          totals[canonicalName] = (totals[canonicalName] || 0) + Number(points);
+          totals[canonicalName] ||= { points: 0, kills: 0, participations: 0 };
+          totals[canonicalName].points += Number(points);
+          totals[canonicalName].participations += 1;
+        });
+      });
+      resultSheets.forEach(({ kills = [] }) => {
+        kills.forEach((killer) => {
+          const canonicalName = normalizePlayerName(killer);
+          totals[canonicalName] ||= { points: 0, kills: 0, participations: 0 };
+          totals[canonicalName].kills += 1;
         });
       });
 
       const ranking = Object.entries(totals)
-        .map(([joueur, points]) => ({ joueur, points }))
+        .map(([joueur, totals]) => ({ joueur, ...totals }))
         .sort((a, b) => b.points - a.points || a.joueur.localeCompare(b.joueur));
 
       const tbody = document.getElementById('ranking-body');
@@ -893,6 +931,8 @@
             <td>${index + 1}</td>
             <td>${entry.joueur}</td>
             <td>${entry.points}</td>
+            <td>${entry.kills}</td>
+            <td>${entry.participations}</td>
           </tr>
         `)
         .join('');
