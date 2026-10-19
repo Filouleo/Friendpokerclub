@@ -1431,6 +1431,15 @@ body:not(.rules-page) .site-banner-dots button.is-active {
     transition: none;
   }
 
+  .steps-grid article {
+    transition: none;
+  }
+
+  .steps-grid article:hover,
+  .steps-grid article:focus-within {
+    transform: none;
+  }
+
   .tournament-card {
     transition: none;
   }
@@ -2463,6 +2472,14 @@ body:not(.rules-page) .home-link-card-agenda p {
   padding: 18px;
   border-right: 1px solid var(--line-light);
   border-bottom: 1px solid var(--line-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.steps-grid article:hover,
+.steps-grid article:focus-within {
+  z-index: 1;
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px rgba(45, 28, 89, 0.16), 0 4px 10px rgba(45, 28, 89, 0.08);
 }
 
 .steps-grid .step-result-trigger {
