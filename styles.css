@@ -1430,6 +1430,14 @@ body:not(.rules-page) .site-banner-dots button.is-active {
   body:not(.rules-page) .site-banner-slide {
     transition: none;
   }
+
+  .tournament-card {
+    transition: none;
+  }
+
+  .tournament-card:hover {
+    transform: none;
+  }
 }
 
 body:not(.rules-page) .hero {
@@ -2261,8 +2269,15 @@ body:not(.rules-page) .home-link-card-agenda p {
 .tournament-card {
   padding: clamp(20px, 3vw, 32px);
   border: 1px solid #ded8f3;
-  border-radius: 4px;
+  border-radius: 8px;
   background: #faf9ff;
+  box-shadow: 0 12px 28px rgba(45, 28, 89, 0.12), 0 2px 6px rgba(45, 28, 89, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tournament-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px rgba(45, 28, 89, 0.16), 0 4px 10px rgba(45, 28, 89, 0.08);
 }
 
 .tournament-card-cash {
