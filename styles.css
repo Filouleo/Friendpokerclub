@@ -2098,9 +2098,11 @@ body:not(.rules-page) .home-link-card-agenda p {
 }
 
 .subpage-hero-art {
-  height: 300px;
+  height: auto;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   border: 1px solid #bbb;
+  background: #f78fba;
   box-shadow: 10px 10px 0 #cc66ff;
 }
 
