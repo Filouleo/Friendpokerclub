@@ -1353,6 +1353,7 @@ body:not(.rules-page) .site-banner-slide img {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  background: linear-gradient(135deg, #171922 0%, #5835b8 55%, #e95d9b 100%);
 }
 
 body:not(.rules-page) .site-banner-caption {
@@ -3063,7 +3064,6 @@ body:not(.rules-page) .text-link {
 
   body:not(.rules-page) .site-banner-slide img {
     object-fit: contain;
-    background: linear-gradient(135deg, #171922 0%, #5835b8 55%, #e95d9b 100%);
   }
 
   body:not(.rules-page) .site-banner-prev {
