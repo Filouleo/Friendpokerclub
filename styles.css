@@ -1476,7 +1476,7 @@ body:not(.rules-page) .home-hero .hero-copy {
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   padding: 24px;
   overflow: hidden;
   border: 2px solid #5835b8;
@@ -1485,6 +1485,16 @@ body:not(.rules-page) .home-hero .hero-copy {
     linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)),
     url('./P%C3%A9pito/P%C3%A9pito.JPG') center 38% / cover no-repeat;
   box-shadow: 0 0 0 4px rgba(204, 102, 255, 0.24), 0 14px 30px rgba(88, 53, 184, 0.2);
+}
+
+body:not(.rules-page) .home-hero .hero-copy > .eyebrow {
+  margin: 0;
+}
+
+body:not(.rules-page) .home-hero .hero-copy-bottom {
+  max-width: 38ch;
+  margin-top: auto;
+  padding-top: 72px;
 }
 
 body:not(.rules-page) .home-hero .hero-copy > * {
@@ -1541,7 +1551,7 @@ body:not(.rules-page) .home-hero .hero-copy.is-photo-revealed > :not(.hero-photo
 
 body:not(.rules-page) .home-hero .hero-copy h1 {
   color: #222;
-  font-size: clamp(2.1rem, 3.2vw, 3.2rem);
+  font-size: clamp(2.1rem, 3.1vw, 3.1rem);
   line-height: 1;
   letter-spacing: -0.07em;
 }
@@ -1651,6 +1661,17 @@ body:not(.rules-page) .hero-note-caption p {
   line-height: 1.45;
 }
 
+body:not(.rules-page) .hero-note-contact {
+  align-self: flex-end;
+  margin-top: 8px;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+body:not(.rules-page) .hero-note-contact span {
+  color: #ff66ff;
+}
+
 body:not(.rules-page) .note-index {
   color: #ff66ff;
 }
@@ -1700,6 +1721,15 @@ body:not(.rules-page) .hero-marquee i {
   body:not(.rules-page) .home-hero .hero-copy {
     display: block;
     padding: 24px;
+  }
+
+  body:not(.rules-page) .home-hero .hero-copy-bottom {
+    padding-top: 36px;
+  }
+
+  body:not(.rules-page) .hero-photo-toggle {
+    position: static;
+    margin-top: 20px;
   }
 
   body:not(.rules-page) .tdp-home-feature-content {
