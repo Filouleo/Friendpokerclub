@@ -1,4 +1,5 @@
 const filters = [{ label: 'Tous', value: 'all' }, { label: 'PDF', value: 'pdf' }, { label: 'Sans PDF', value: 'no-pdf' }];
+const pseudoCollator = new Intl.Collator('fr', { sensitivity: 'base', numeric: true });
 const localPdfFiles = new Set([
   'Cash 24_25.pdf',
   'Five 24_25.pdf',
@@ -167,6 +168,8 @@ function renderMembers(data, filter = 'all', search = '') {
       return haystack.includes(search);
     });
   }
+
+  members.sort((a, b) => pseudoCollator.compare(a.pseudo, b.pseudo));
 
   const membersGrid = document.getElementById('members-grid');
   if (!membersGrid) return;
