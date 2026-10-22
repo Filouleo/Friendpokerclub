@@ -1422,7 +1422,60 @@ body:not(.rules-page) .site-banner-dots button.is-active {
   border-color: #ff66ff;
 }
 
+.home-date-marquee {
+  width: min(100% - 48px, 1440px);
+  margin: -4px auto 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)) padding-box,
+    linear-gradient(105deg, #153e82, #2878c8, #72b9e8, #2878c8, #153e82) border-box;
+  box-shadow: 0 8px 22px rgba(31, 91, 151, 0.14);
+}
+
+.home-date-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: home-date-marquee-scroll 26s linear infinite;
+}
+
+.home-date-marquee-track span {
+  flex: none;
+  padding: 14px 44px;
+  background: linear-gradient(90deg, #153e82 0%, #1e5f9a 34%, #1d6da3 58%, #1c5fa0 82%, #153e82 100%);
+  background-clip: text;
+  color: transparent;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.05rem, 2.1vw, 1.55rem);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  white-space: nowrap;
+}
+
+.home-date-marquee:hover .home-date-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes home-date-marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .home-date-marquee-track {
+    width: 100%;
+    animation: none;
+    justify-content: center;
+    transform: none;
+  }
+
+  .home-date-marquee-track span + span {
+    display: none;
+  }
+
   body:not(.rules-page) .site-banner-slide {
     transition: none;
   }
@@ -3048,6 +3101,16 @@ body:not(.rules-page) .text-link {
 }
 
 @media (max-width: 700px) {
+  .home-date-marquee {
+    width: min(100% - 32px, 1440px);
+    border-radius: 18px;
+  }
+
+  .home-date-marquee-track span {
+    padding: 12px 24px;
+    font-size: 1.05rem;
+  }
+
   body:not(.rules-page) .site-banner {
     width: min(100% - 32px, 1440px);
     height: auto;
