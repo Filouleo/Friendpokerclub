@@ -1292,7 +1292,7 @@ body:not(.rules-page) .button-primary {
 body:not(.rules-page) .site-banner {
   position: relative;
   width: min(100% - 48px, 1440px);
-  height: clamp(190px, 27vw, 360px);
+  height: clamp(150px, 22vw, 280px);
   margin: 24px auto;
   overflow: hidden;
   border: 9px solid transparent;
@@ -3114,7 +3114,7 @@ body:not(.rules-page) .text-link {
   body:not(.rules-page) .site-banner {
     width: min(100% - 32px, 1440px);
     height: auto;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 2 / 1;
     margin: 18px auto;
     border-width: 6px;
     border-radius: 12px;
