@@ -994,7 +994,7 @@
 
       const ranking = Object.entries(totals)
         .map(([joueur, totals]) => ({ joueur, ...totals }))
-        .sort((a, b) => b.points - a.points || a.joueur.localeCompare(b.joueur));
+        .sort((a, b) => b.points - a.points || b.kills - a.kills || a.joueur.localeCompare(b.joueur));
 
       const tbody = document.getElementById('ranking-body');
       tbody.innerHTML = ranking
