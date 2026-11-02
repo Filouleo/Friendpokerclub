@@ -1509,14 +1509,13 @@ body:not(.rules-page) .home-hero {
 
 body:not(.rules-page) .home-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
   gap: clamp(20px, 2.5vw, 36px);
   align-items: stretch;
 }
 
 body:not(.rules-page) .home-hero-grid > .hero-copy,
-body:not(.rules-page) .home-hero-grid > .tdp-home-feature-content,
-body:not(.rules-page) .home-hero-grid > .hero-note {
+body:not(.rules-page) .home-hero-grid > .tdp-home-feature-content {
   height: 420px;
 }
 
